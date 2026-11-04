@@ -1,5 +1,5 @@
 vim.pack.add({
-	{ src = "https://github.com/alexmozaidze/palenight.nvim" },
+	{ src = "https://github.com/sainnhe/gruvbox-material" },
 	{ src = "https://github.com/nvim-treesitter/nvim-treesitter", version = "main" },
 	{ src = "https://github.com/neovim/nvim-lspconfig" },
 	{ src = "https://github.com/nvim-mini/mini.nvim", version = "stable" },
@@ -12,11 +12,19 @@ vim.pack.add({
 	{ src = "https://github.com/mfussenegger/nvim-lint" },
 })
 
+-- Colorscheme
+vim.g.gruvbox_material_background = "hard" -- "hard" | "medium" | "soft"
+vim.g.gruvbox_material_foreground = "material"
+vim.g.gruvbox_material_enable_italic = 1
+vim.g.gruvbox_material_better_performance = 1
+
+vim.o.background = "dark"
+vim.cmd.colorscheme("gruvbox-material")
+
 -- Telescope
 require("telescope").setup({})
 
 -- Neotree
-
 require("neo-tree").setup({})
 
 ----  Various Mini plugins
@@ -62,6 +70,3 @@ MiniCompletions.setup({
 		end,
 	},
 })
-
--- Colorscheme
-vim.cmd.colorscheme("palenight")
