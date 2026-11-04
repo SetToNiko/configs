@@ -1,0 +1,97 @@
+" Mirrors ~/.config/nvim/lua/{keymap,options}.lua
+
+" --- Leader ---
+let mapleader=" "
+let maplocalleader=" "
+
+" --- Options (options.lua) ---
+set number
+set relativenumber
+set scrolloff=10
+set sidescrolloff=10
+set ignorecase
+set smartcase
+set hlsearch
+set incsearch
+set clipboard+=unnamedplus
+set timeout
+set timeoutlen=200
+
+" --- Plugins ---
+set highlightedyank
+set NERDTree
+
+" --- Let Vim own these Ctrl chords in normal mode (IDE steals them otherwise) ---
+sethandler <C-h> n:vim
+sethandler <C-j> n:vim
+sethandler <C-k> n:vim
+sethandler <C-l> n:vim
+sethandler <C-s> n:vim
+sethandler <C-v> n:vim
+
+" --- General ---
+nnoremap <leader>q :q<CR>
+nnoremap <leader>o <C-o>
+nnoremap <leader>i <C-i>
+
+" --- Panes ---
+nnoremap <C-h> <C-w>h
+nnoremap <C-l> <C-w>l
+nnoremap <C-j> <C-w>j
+nnoremap <C-k> <C-w>k
+nnoremap <C-s> <C-w>s
+nnoremap <C-v> <C-w>v
+
+" --- LSP (nvim 0.11 defaults + gd) ---
+nnoremap K :action QuickJavaDoc<CR>
+nnoremap gd :action GotoDeclaration<CR>
+nnoremap grr :action FindUsages<CR>
+nnoremap gri :action GotoImplementation<CR>
+nnoremap grn :action RenameElement<CR>
+nnoremap gra :action ShowIntentionActions<CR>
+nnoremap gO :action FileStructurePopup<CR>
+nnoremap ]d :action GotoNextError<CR>
+nnoremap [d :action GotoPreviousError<CR>
+nnoremap <leader>f :action ReformatCode<CR>
+vnoremap <leader>f :action ReformatCode<CR>
+
+" --- Telescope equivalents ---
+nnoremap <leader>ff :action GotoFile<CR>
+nnoremap <leader>fg :action FindInPath<CR>
+nnoremap <leader>fh :action HelpTopics<CR>
+nnoremap <leader>fs :action FindInPath<CR>
+vnoremap <leader>fs :action FindInPath<CR>
+nnoremap <leader>fm :action GotoAction<CR>
+nnoremap <leader>fd :action ActivateProblemsViewToolWindow<CR>
+
+" --- Keys inside the tree, matched to neo-tree defaults ---
+let g:NERDTreeMapNewFile='a'
+let g:NERDTreeMapNewDir='A'
+let g:NERDTreeMapDelete='d'
+let g:NERDTreeMapOpenSplit='S'
+let g:NERDTreeMapOpenVSplit='s'
+let g:NERDTreeMapOpenInTab='t'
+let g:NERDTreeMapSpeedSearch='/'
+let g:NERDTreeMapQuit='q'
+let g:NERDTreeMapRefresh='R'
+let g:NERDTreeMapRefreshRoot='gR'
+let g:NERDTreeMapToggleZoom='gz'
+
+" --- Neo-tree equivalents ---
+nnoremap <leader>t :NERDTreeToggle<CR>
+" Visibility toggle without leaving the editor. IdeaVim cannot read panel state,
+" so a flag tracks it; if you open/close the panel by hand, press twice to resync.
+let g:tree_open = 0
+function! ToggleTree()
+    if g:tree_open
+        action FocusEditor
+        action ActivateProjectToolWindow
+        action HideActiveWindow
+        let g:tree_open = 0
+    else
+        action ActivateProjectToolWindow
+        action FocusEditor
+        let g:tree_open = 1
+    endif
+endfunction
+nnoremap <leader>tt :call ToggleTree()<CR>
