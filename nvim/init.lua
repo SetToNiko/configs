@@ -1,0 +1,7 @@
+require("options")
+require("plugins")
+require("lsp.servers")
+require("lsp.format")
+require("lsp.lint")
+require("treesitter")
+require("keymap")

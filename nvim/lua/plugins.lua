@@ -1,0 +1,67 @@
+vim.pack.add({
+	{ src = "https://github.com/alexmozaidze/palenight.nvim" },
+	{ src = "https://github.com/nvim-treesitter/nvim-treesitter", version = "main" },
+	{ src = "https://github.com/neovim/nvim-lspconfig" },
+	{ src = "https://github.com/nvim-mini/mini.nvim", version = "stable" },
+	{ src = "https://github.com/nvim-lua/plenary.nvim" },
+	{ src = "https://github.com/nvim-telescope/telescope.nvim" },
+	{ src = "https://github.com/MunifTanjim/nui.nvim" },
+	{ src = "https://github.com/nvim-neo-tree/neo-tree.nvim" },
+	{ src = "https://github.com/mrcjkb/rustaceanvim" },
+	{ src = "https://github.com/stevearc/conform.nvim" },
+	{ src = "https://github.com/mfussenegger/nvim-lint" },
+})
+
+-- Telescope
+require("telescope").setup({})
+
+-- Neotree
+
+require("neo-tree").setup({})
+
+----  Various Mini plugins
+-- Mini Highlight Patterns
+require("mini.hipatterns").setup({
+	highlighters = {
+		fixme = { pattern = "FIXME", group = "MiniHipatternsFixme" },
+		hack = { pattern = "HACK", group = "MiniHipatternsHack" },
+		todo = { pattern = "TODO:", group = "MiniHipatternsTodo" },
+		note = { pattern = "NOTE", group = "MiniHipatternsNote" },
+	},
+})
+
+-- Mini Indenscope
+require("mini.indentscope").setup({
+	draw = {
+		delay = 0,
+		animation = function()
+			return 0
+		end,
+	},
+})
+require("mini.indentscope").gen_animation.none()
+require("mini.notify").setup()
+require("mini.icons").setup()
+require("mini.diff").setup()
+require("mini.git").setup()
+require("mini.statusline").setup({
+	use_icons = true,
+	set_vim_settings = true,
+})
+require("mini.snippets").setup()
+
+-- mini completions --
+local MiniCompletions = require("mini.completion")
+MiniCompletions.setup({
+	lsp_completion = {
+		auto_setup = true,
+		process_items = function(items, base)
+			return MiniCompletions.default_process_items(items, base, {
+				filtersort = "fuzzy",
+			})
+		end,
+	},
+})
+
+-- Colorscheme
+vim.cmd.colorscheme("palenight")
