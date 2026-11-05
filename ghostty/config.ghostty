@@ -2,3 +2,4 @@ gtk-titlebar = false
 gtk-wide-tabs = false
 theme = Gruvbox Material
 window-theme = dark
+font-size = 9
