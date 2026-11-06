@@ -1,0 +1,18 @@
+[theme]
+theme = "gruvbox-dark"
+
+[icons]
+icons = "material-nf"
+
+[[block]]
+block = "net"
+format = "$icon {$ssid|wired}"
+
+[[block]]
+block = "memory"
+format = "$icon$mem_used/$mem_total"
+
+[[block]]
+block = "time"
+interval = 60
+format = " $timestamp.datetime(f:'%H:%M') "
