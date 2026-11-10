@@ -21,6 +21,11 @@ can start a session without this skill.
 - A new calendar day starts a new devlog, even mid-conversation.
 - Update the log as the session progresses. Commit and push after each major update and at the end of the session.
 
+## Agile module
+
+- `./agile.md` (bundled next to this file) extends this skill for Agile projects. Read it at the start of every session, right after attaching the devlogs repo and before asking which project the session is for.
+- Every rule in this file still applies. `agile.md` adds to it; whether it is active for a given project is decided by the repo structure it describes (section 1 of `agile.md`).
+
 ## How this differs from Learning Mode
 
 Anthropic's Learning Mode plugin has Claude build most of the code and pause at

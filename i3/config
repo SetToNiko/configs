@@ -29,7 +29,7 @@ exec --no-startup-id xss-lock --transfer-sleep-lock -- i3lock --nofork
 # NetworkManager is the most popular way to manage wireless networks on Linux,
 # and nm-applet is a desktop environment-independent system tray GUI for it.
 exec --no-startup-id nm-applet
-exec --no-startup-id autorandr --load changed
+exec --no-startup-id autorandr --load docked
 
 # Use pactl to adjust volume in PulseAudio.
 set $refresh_i3status killall -SIGUSR1 i3status
@@ -156,7 +156,7 @@ mode "resize" {
         # Pressing right will grow the window’s width.
         # Pressing up will shrink the window’s height.
         # Pressing down will grow the window’s height.
-        bindsym j resize shrink width 10 px or 10 ppt
+        bindsym j;resize shrink width 10 px or 10 ppt
         bindsym k resize grow height 10 px or 10 ppt
         bindsym l resize shrink height 10 px or 10 ppt
         bindsym semicolon resize grow width 10 px or 10 ppt
@@ -175,10 +175,32 @@ mode "resize" {
 
 bindsym $mod+r mode "resize"
 
-default_border pixel 0
+default_border pixel 3
 
 # Start i3bar to display a workspace bar (plus the system information i3status
 # finds out, if available)
 bar {
         status_command i3status-rs
 }
+
+# Gruvbox Dark Palette
+set $bg          #282828
+set $red         #cc241d
+set $green       #98971a
+set $yellow      #d79921
+set $blue        #458588
+set $purple      #b16286
+set $aqua        #689d68
+set $gray        #a89984
+set $darkgray    #1d2021
+set $lightgray   #bdae93
+
+# class                 border      bground     text        indicator   child_border
+client.focused          $yellow     $yellow     $bg         $purple     $yellow
+client.focused_inactive $darkgray   $darkgray   $lightgray  $darkgray   $darkgray
+client.unfocused        $darkgray   $bg         $gray       $darkgray   $bg
+client.urgent           $red        $red        $bg         $red        $red
+client.placeholder      $bg         $bg         $lightgray  $bg         $bg
+
+client.background       $bg
+
