@@ -6,6 +6,11 @@ command=wpctl get-volume @DEFAULT_AUDIO_SINK@ | awk '{ if (/MUTED/) print "vol m
 interval=once
 signal=10
 
+[brightness]
+command=brightnessctl -d intel_backlight -m | awk -F, '{print "bri " $4}'
+interval=once
+signal=11
+
 [wifi]
 command=nmcli -t -f active,ssid dev wifi | awk -F: '$1=="yes"{print $2; f=1} END{if(!f) print "wired"}'
 interval=10
