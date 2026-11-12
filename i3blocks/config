@@ -1,6 +1,5 @@
 # Defaults for every block
 separator_block_width=15
-color=#ebdbb2
 
 [volume]
 command=wpctl get-volume @DEFAULT_AUDIO_SINK@ | awk '{ if (/MUTED/) print "vol muted"; else printf "vol %d%%\n", $2*100 }'
@@ -20,5 +19,5 @@ command=date '+%H:%M'
 interval=5
 
 [battery]
-command=c=$(cat /sys/class/power_supply/BAT0/capacity); s=$(cat /sys/class/power_supply/BAT0/status); t="bat $c%"; ["$s" = Charging] && t="$t+"; echo "$t"; echo "$t"; if ["$c" -le 15 ] && [ "$s" != Charging ]; then echo "#fb4934"; fi
+command=bash ~/.config/i3blocks/battery.sh
 interval=30

@@ -1,0 +1,24 @@
+# Columns: border, background, text, indicator, child_border
+  client.focused          $yellow $yellow $bg     $blue   $yellow
+  client.focused_inactive $bg2    $bg2    $fg     $bg2    $bg2
+  client.unfocused        $bg     $bg     $fg_dim $bg     $bg
+  client.urgent           $red    $red    $fg     $red    $red
+  client.background       $bg
+
+bar {
+        status_command i3blocks
+
+        colors {
+          background $bg
+                  statusline $fg
+                  separator  $bg2
+
+                  #                  border  background text
+                  focused_workspace  $yellow $yellow    $bg
+                  active_workspace   $bg2    $bg2       $fg
+                  inactive_workspace $bg     $bg        $fg_dim
+                  urgent_workspace   $red    $red       $fg
+                  binding_mode       $blue   $blue      $fg
+                  }
+
+}

@@ -1,0 +1,14 @@
+@theme "default"
+@import "~/.config/colors/rofi.rasi"
+
+* {
+    background: var(bg);
+    foreground: var(fg);
+    lightbg: var(bg);
+    lightfg: var(bg2);
+    selected-normal-background: var(yellow);
+    selected-normal-foreground: var(bg);
+    border-color: var(yellow);
+    separatorcolor: var(fg-dim);
+}
+
