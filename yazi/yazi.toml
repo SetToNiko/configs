@@ -1,0 +1,14 @@
+[opener]
+nvim = [
+  { run = "ghostty -e nvim %s & ya emit quit", orphan = true, desc = "Neovim" },
+]
+
+rofi = [
+  { run = 'bash ~/.config/yazi/rofi-open.sh "$@"', orphan = true, desc = "Open with (rofi)" },
+]
+
+[open]
+prepend_rules = [
+  { url = "*.{txt,md,lua,nix,toml,yaml,yml,json,sh,py,ts,js,svelte,html,css,c,h,cpp}", use = "nvim" },
+  { url = "*", use = "rofi" },
+]
