@@ -3,6 +3,9 @@
 # Show the apps that can open the selected file's type in rofi, then open the file(s) with chosen app
 mime=$(xdg-mime query filetype "$1")
 
+# Start the program detached from yazi, then close yazi
+launch() { setsid -f "$@" >/dev/null 2>&1; ya emit quit; }
+
 # Find a .desktop file by its ID in the XDG data dirs
 find_desktop(){
     local dir
@@ -27,7 +30,7 @@ find_desktop(){
   # No apps registered for this type: fall back to every command on PATH
   if [ -z "$menu" ]; then
     app=$(compgen -c | sort -u | rofi -dmenu -i -p "Open with") || exit 0
-    [ -n "$app" ] && exec "$app" "$@"
+    [ -n "$app" ] && launch "$app" "$@"
     exit 0
   fi
 
@@ -38,7 +41,7 @@ find_desktop(){
   if grep -q '^Terminal=true' "$path"; then
     # Terminal apps (e.g. nvim): run them in a new Ghostty window
     cmd=$(grep -m1 '^Exec=' "$path" | cut -d= -f2- | sed 's/ %[fFuUick]//g')
-    exec ghostty -e $cmd "$@"
+    launch ghostty -e $cmd "$@"
   else
-    exec gio launch "$path" "$@"
+    launch gio launch "$path" "$@"
   fi

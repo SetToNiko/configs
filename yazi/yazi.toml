@@ -4,11 +4,12 @@ nvim = [
 ]
 
 rofi = [
-  { run = 'bash ~/.config/yazi/rofi-open.sh "$@"', orphan = true, desc = "Open with (rofi)" },
+  { run = "bash ~/.config/yazi/rofi-open.sh %s", orphan = true, desc = "Open with (rofi)" },
+]
+
+editors = [
+  { run = "bash ~/.config/yazi/rofi-open-dir.sh %s1", orphan = true, desc = "Open in editor (rofi)" },
 ]
 
 [open]
-prepend_rules = [
-  { url = "*.{txt,md,lua,nix,toml,yaml,yml,json,sh,py,ts,js,svelte,html,css,c,h,cpp}", use = "nvim" },
-  { url = "*", use = "rofi" },
-]
+prepend_rules = [{ url = "*.{txt,md,lua,nix,toml,yaml,yml,json,sh,py,ts,js,svelte,html,css,c,h,cpp}", use = "nvim" }, { url = "*", use = "rofi" }, { url = "*/", use = "editors" }]
