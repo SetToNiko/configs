@@ -64,3 +64,14 @@ MiniCompletions.setup({
 		end,
 	},
 })
+-- completion menu keys: only active while the popup is visible
+local function pum_map(lhs, when_visible, otherwise)
+	vim.keymap.set("i", lhs, function()
+		return vim.fn.pumvisible() == 1 and when_visible or otherwise
+	end, { expr = true })
+end
+
+pum_map("<C-j>", "<C-n>", "<C-j>") -- next item
+pum_map("<C-k>", "<C-p>", "<C-k>") -- previous item
+pum_map("<Tab>", "<C-y>", "<Tab>") -- confirm selection
+pum_map("<CR>", "", "<CR>") -- Enter does nothing while the menu is open
