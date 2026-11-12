@@ -1,0 +1,24 @@
+# Defaults for every block
+separator_block_width=15
+color=#ebdbb2
+
+[volume]
+command=wpctl get-volume @DEFAULT_AUDIO_SINK@ | awk '{ if (/MUTED/) print "vol muted"; else printf "vol %d%%\n", $2*100 }'
+interval=once
+signal=10
+
+[wifi]
+command=nmcli -t -f active,ssid dev wifi | awk -F: '$1=="yes"{print $2; f=1} END{if(!f) print "wired"}'
+interval=10
+
+[memory]
+command=free -h --si | awk '/^Mem/ {print $3 "/" $2}'
+interval=10
+
+[time]
+command=date '+%H:%M'
+interval=5
+
+[battery]
+command=c=$(cat /sys/class/power_supply/BAT0/capacity); s=$(cat /sys/class/power_supply/BAT0/status); t="bat $c%"; ["$s" = Charging] && t="$t+"; echo "$t"; echo "$t"; if ["$c" -le 15 ] && [ "$s" != Charging ]; then echo "#fb4934"; fi
+interval=30
