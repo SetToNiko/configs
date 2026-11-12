@@ -46,7 +46,13 @@ printf 'theme = %s\n' "$name" > "$out/ghostty"
   jq -r --arg n "$name" '.[$n] | to_entries[] | "    \(.key | gsub("_"; "-")): \(.value);"' "$palettes"
   echo '}'; } > "$out/rofi.rasi"
 
+# Firefox (Pywalfox): mapping lives in configs/pywalfox/colors.jq
+mkdir -p "$HOME/.cache/wal"
+jq --arg n "$name" -f "$HOME/dotfiles-nixos/configs/pywalfox/colors.jq" \
+  "$palettes" > "$HOME/.cache/wal/colors.json"
+
 if [ -z "$NO_RESTART" ]; then
   pkill -USR2 -f '^ghostty( |$)'   # Ghostty reloads its config on SIGUSR2
   i3-msg restart >/dev/null
+  pywalfox update >/dev/null 2>&1
 fi
