@@ -5,11 +5,10 @@ vim.pack.add({
 	{ src = "https://github.com/nvim-mini/mini.nvim", version = "stable" },
 	{ src = "https://github.com/nvim-lua/plenary.nvim" },
 	{ src = "https://github.com/nvim-telescope/telescope.nvim" },
-	{ src = "https://github.com/MunifTanjim/nui.nvim" },
-	{ src = "https://github.com/nvim-neo-tree/neo-tree.nvim" },
 	{ src = "https://github.com/mrcjkb/rustaceanvim" },
 	{ src = "https://github.com/stevearc/conform.nvim" },
 	{ src = "https://github.com/mfussenegger/nvim-lint" },
+	{ src = "https://github.com/mikavilpas/yazi.nvim" },
 })
 
 -- Colorscheme
@@ -18,8 +17,8 @@ require("theme")
 -- Telescope
 require("telescope").setup({})
 
--- Neotree
-require("neo-tree").setup({})
+-- Yazi
+require("yazi").setup({})
 
 ----  Various Mini plugins
 -- Mini Highlight Patterns

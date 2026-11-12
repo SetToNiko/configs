@@ -31,6 +31,27 @@ vim.keymap.set({ "n", "v" }, "<leader>fs", "<cmd>Telescope grep_string<cr>")
 vim.keymap.set("n", "<leader>fm", "<cmd>Telescope keymaps<cr>")
 vim.keymap.set("n", "<leader>fd", "<cmd>Telescope diagnostics bufnr=0<cr>")
 
--- Neotree
-vim.keymap.set("n", "<leader>t", "<cmd>Neotree toggle filesystem<cr>")
-vim.keymap.set("n", "<leader>tt", "<cmd>Neotree show toggle filesystem<cr>")
+-- Yazi single column (like Neotree)
+local function yazi_sidebar(path)
+	local width = 40
+	require("yazi").yazi({
+		config_home = vim.fn.stdpath("config") .. "/yazi-sidebar",
+		floating_window_scaling_factor = { height = 1, width = width },
+		hooks = {
+			before_opening_window = function(opts)
+				opts.row = 0
+				opts.col = 0
+				opts.width = width
+				opts.height = vim.o.lines - vim.o.cmdheight - 3 -- leave the statusline visible
+			end,
+		},
+	}, path)
+end
+
+-- Yazi file explorer
+vim.keymap.set({ "n", "v" }, "<leader>y", "<cmd>Yazi<cr>", { desc = "Yazi at current file" })
+vim.keymap.set("n", "<leader>Y", "<cmd>Yazi cwd<cr>", { desc = "Yazi in working directory" })
+
+vim.keymap.set("n", "<leader>t", function()
+	yazi_sidebar(vim.uv.cwd())
+end, { desc = "Yazi sidebar at current file" })
