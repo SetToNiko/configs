@@ -56,4 +56,6 @@ if [ -z "$NO_RESTART" ]; then
   pkill -USR2 -f '^ghostty( |$)'   # Ghostty reloads its config on SIGUSR2
   i3-msg restart >/dev/null
   pywalfox update >/dev/null 2>&1
+  # Wallpaper border colour follows bg0
+  command -v wallpaper-rotate >/dev/null && wallpaper-rotate refresh >/dev/null 2>&1 &
 fi
