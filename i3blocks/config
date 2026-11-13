@@ -6,8 +6,9 @@ command=wpctl get-volume @DEFAULT_AUDIO_SINK@ | awk '{ if (/MUTED/) print "vol m
 interval=once
 signal=10
 
+# prints nothing (block hidden) on hosts without a backlight
 [brightness]
-command=brightnessctl -d intel_backlight -m | awk -F, '{print "bri " $4}'
+command=brightnessctl -d intel_backlight -m 2>/dev/null | awk -F, '{print "bri " $4}'
 interval=once
 signal=11
 
@@ -23,6 +24,7 @@ interval=10
 command=date '+%H:%M'
 interval=5
 
+# prints nothing (block hidden) on hosts without a battery
 [battery]
 command=bash ~/.config/i3blocks/battery.sh
 interval=30
