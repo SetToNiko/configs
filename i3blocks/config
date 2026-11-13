@@ -12,10 +12,19 @@ command=brightnessctl -d intel_backlight -m 2>/dev/null | awk -F, '{print "bri "
 interval=once
 signal=11
 
-# nerd font icon (+ connected device name); click opens blueman-manager
+# nerd font icon (+ current server); hidden when discord isn't running;
+# event-driven: reprints when the discord window title changes;
+# click focuses the discord window
+[discord]
+command=bash ~/.config/i3blocks/discord.sh
+interval=persist
+
+# nerd font icon tinted by battery level (+ connected device name);
+# event-driven: reprints on bluez changes; click opens blueman-manager
 [bluetooth]
 command=bash ~/.config/i3blocks/bluetooth.sh
-interval=5
+interval=persist
+markup=pango
 
 [wifi]
 command=nmcli -t -f active,ssid dev wifi | awk -F: '$1=="yes"{print $2; f=1} END{if(!f) print "wired"}'
