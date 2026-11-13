@@ -4,11 +4,11 @@
   palettes="${PALETTES:-$HOME/dotfiles-nixos/configs/palettes.json}"
   out="$HOME/.config/colors"
 
-  # Menu rows: bold name, one swatch per colour,
+  # Menu rows: bold name, one swatch per main colour,
   # and "(active)" after the current scheme
   menu_rows='to_entries[]
     | "<b>\(.key)</b>   "
-      + ([.value[] | "<span foreground=\"\(.)\">██</span>"] | join(""))
+      + ([.value | .bg0, .fg0, .red, .orange, .yellow, .green, .aqua, .blue, .purple | "<span foreground=\"\(.)\">██</span>"] | join(""))
       + (if .key == $cur then "   <i>(active)</i>" else "" end)'
 
   if [ -n "$1" ]; then
@@ -39,7 +39,8 @@ jq -r --arg n "$name" '.[$n] | to_entries[] | "\(.key)=\(.value)"' \
   "$palettes" > "$out/colors.sh"
 echo "$name" > "$out/current"
 # Ghostty: palette names are Ghostty theme names
-printf 'theme = %s\n' "$name" > "$out/ghostty"
+# plus the palette's background, so edits to bg in palettes.json reach the terminal
+printf 'theme = %s\nbackground = %s\n' "$name" "$(jq -r --arg n "$name" '.[$n].bg0' "$palettes")" > "$out/ghostty"
 
 # rofi: raw colours only; config.rasi decides what uses them
 { echo '* {'

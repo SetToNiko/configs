@@ -1,16 +1,21 @@
 # Defaults for every block
 separator_block_width=15
 
+# event-driven: the script stays running and prints on every pipewire change
 [volume]
-command=wpctl get-volume @DEFAULT_AUDIO_SINK@ | awk '{ if (/MUTED/) print "vol muted"; else printf "vol %d%%\n", $2*100 }'
-interval=once
-signal=10
+command=bash ~/.config/i3blocks/volume.sh
+interval=persist
 
 # prints nothing (block hidden) on hosts without a backlight
 [brightness]
 command=brightnessctl -d intel_backlight -m 2>/dev/null | awk -F, '{print "bri " $4}'
 interval=once
 signal=11
+
+# nerd font icon (+ connected device name); click opens blueman-manager
+[bluetooth]
+command=bash ~/.config/i3blocks/bluetooth.sh
+interval=5
 
 [wifi]
 command=nmcli -t -f active,ssid dev wifi | awk -F: '$1=="yes"{print $2; f=1} END{if(!f) print "wired"}'

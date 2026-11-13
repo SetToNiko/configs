@@ -2,13 +2,13 @@
 @import "~/.config/colors/rofi.rasi"
 
 * {
-    background: var(bg);
-    foreground: var(fg);
-    lightbg: var(bg);
-    lightfg: var(bg2);
+    background: var(bg0);
+    foreground: var(fg0);
+    lightbg: var(bg0);
+    lightfg: var(bg3);
     selected-normal-background: var(yellow);
-    selected-normal-foreground: var(bg);
+    selected-normal-foreground: var(bg0);
     border-color: var(yellow);
-    separatorcolor: var(fg-dim);
+    separatorcolor: var(grey2);
 }
 

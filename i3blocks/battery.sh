@@ -11,6 +11,6 @@
   echo "$t"
   echo "$t"
   if [ "$c" -le 15 ] && [ "$s" != Charging ]; then
-    echo "$red_lit"
+    echo "$red"
   fi
   exit 0

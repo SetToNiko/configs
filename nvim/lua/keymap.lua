@@ -55,3 +55,6 @@ vim.keymap.set("n", "<leader>Y", "<cmd>Yazi cwd<cr>", { desc = "Yazi in working 
 vim.keymap.set("n", "<leader>t", function()
 	yazi_sidebar(vim.uv.cwd())
 end, { desc = "Yazi sidebar at current file" })
+
+-- Lazygit (floating window)
+vim.keymap.set("n", "<leader>lg", "<cmd>LazyGit<cr>", { desc = "Lazygit" })

@@ -1,24 +1,26 @@
 # Columns: border, background, text, indicator, child_border
-  client.focused          $yellow $yellow $bg     $blue   $yellow
-  client.focused_inactive $bg2    $bg2    $fg     $bg2    $bg2
-  client.unfocused        $bg     $bg     $fg_dim $bg     $bg
-  client.urgent           $red    $red    $fg     $red    $red
-  client.background       $bg
+  client.focused          $yellow $yellow $bg0     $blue   $yellow
+  client.focused_inactive $bg3    $bg3    $fg0     $bg3    $bg3
+  client.unfocused        $bg0     $bg0     $grey2 $bg0     $bg0
+  client.urgent           $red    $red    $fg0     $red    $red
+  client.background       $bg0
 
 bar {
         status_command i3blocks
+        # show tray icons on the primary monitor
+        tray_output primary
 
         colors {
-          background $bg
-                  statusline $fg
-                  separator  $bg2
+          background $bg0
+                  statusline $fg0
+                  separator  $bg3
 
                   #                  border  background text
-                  focused_workspace  $yellow $yellow    $bg
-                  active_workspace   $bg2    $bg2       $fg
-                  inactive_workspace $bg     $bg        $fg_dim
-                  urgent_workspace   $red    $red       $fg
-                  binding_mode       $blue   $blue      $fg
+                  focused_workspace  $yellow $yellow    $bg0
+                  active_workspace   $bg3    $bg3       $fg0
+                  inactive_workspace $bg0     $bg0        $grey2
+                  urgent_workspace   $red    $red       $fg0
+                  binding_mode       $blue   $blue      $fg0
                   }
 
 }

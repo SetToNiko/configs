@@ -9,6 +9,9 @@ vim.pack.add({
 	{ src = "https://github.com/stevearc/conform.nvim" },
 	{ src = "https://github.com/mfussenegger/nvim-lint" },
 	{ src = "https://github.com/mikavilpas/yazi.nvim" },
+	{ src = "https://github.com/kdheepak/lazygit.nvim" },
+	{ src = "https://github.com/windwp/nvim-autopairs" },
+	{ src = "https://github.com/windwp/nvim-ts-autotag" },
 })
 
 -- Colorscheme
@@ -19,6 +22,13 @@ require("telescope").setup({})
 
 -- Yazi
 require("yazi").setup({})
+
+-- Autopairs: closes brackets and quotes as you type.
+-- map_cr is off because <CR> is mapped below, next to the completion menu keys.
+require("nvim-autopairs").setup({ map_cr = false })
+
+-- Autotag: closes and renames html/svelte/jsx tags (uses treesitter parsers)
+require("nvim-ts-autotag").setup()
 
 ----  Various Mini plugins
 -- Mini Highlight Patterns
@@ -73,4 +83,11 @@ end
 pum_map("<C-j>", "<C-n>", "<C-j>") -- next item
 pum_map("<C-k>", "<C-p>", "<C-k>") -- previous item
 pum_map("<Tab>", "<C-y>", "<Tab>") -- confirm selection
-pum_map("<CR>", "", "<CR>") -- Enter does nothing while the menu is open
+-- Enter does nothing while the menu is open; otherwise it is a normal Enter
+-- that also splits a pair onto separate lines ({|} -> block) via nvim-autopairs
+vim.keymap.set("i", "<CR>", function()
+	if vim.fn.pumvisible() == 1 then
+		return ""
+	end
+	return require("nvim-autopairs").autopairs_cr()
+end, { expr = true, replace_keycodes = false })
