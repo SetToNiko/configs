@@ -32,10 +32,16 @@ if [ "${1:-}" != refresh ] || [ ! -f "$current" ]; then
   fi
   img=${images[RANDOM % ${#images[@]}]}
 
+  # Every wallpaper at the same square size (that of contradictions_collapse):
+  # scaled to cover it, then centre-cropped
+  ffmpeg -nostdin -loglevel error -y -i "$img" \
+    -vf 'scale=500:500:force_original_aspect_ratio=increase:flags=lanczos,crop=500:500' \
+    -frames:v 1 "$cache/source.png"
+
   # Two seconds of the still image as video. mpv loops it on the lock screen,
   # and the shader is animated by mpv's frame counter, which needs real frames.
-  ffmpeg -nostdin -loglevel error -y -loop 1 -framerate 30 -i "$img" -t 2 \
-    -vf 'scale=trunc(iw/2)*2:trunc(ih/2)*2,format=yuv420p' \
+  ffmpeg -nostdin -loglevel error -y -loop 1 -framerate 30 -i "$cache/source.png" -t 2 \
+    -vf 'format=yuv420p' \
     -c:v libx264 -preset veryfast -tune stillimage -crf 16 "$cache/loop.tmp.mkv"
   mv -f "$cache/loop.tmp.mkv" "$cache/loop.mkv"
   printf '%s\n' "$img" > "$cache/wallpaper"
@@ -47,6 +53,8 @@ fi
 # rendering, where nothing shows on screen. Redone when the image changes or
 # the shader is newer than the still. If it fails, the plain image is used
 # instead.
+src="$cache/source.png"
+[ -s "$src" ] || src=$img   # older cache without the resized copy
 shader="$HOME/dotfiles-nixos/configs/lock/ascii.glsl"
 still="$cache/still.png"
 if [ "$img" != "$current" ] || [ ! -s "$still" ] || [ "$shader" -nt "$still" ]; then
@@ -59,7 +67,7 @@ if [ "$img" != "$current" ] || [ ! -s "$still" ] || [ "$shader" -nt "$still" ]; 
       --glsl-shader="$cache/wallpaper.glsl" \
       --script="$HOME/dotfiles-nixos/configs/lock/snapshot.lua" \
       --script-opts=snapshot-out="$cache/still.tmp.png" \
-      "$img" </dev/null || true
+      "$src" </dev/null || true
   if [ -s "$cache/still.tmp.png" ]; then
     mv -f "$cache/still.tmp.png" "$still"
   else
