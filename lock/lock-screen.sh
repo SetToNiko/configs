@@ -14,6 +14,18 @@ fg=$(color fg0)
 warn=$(color red)
 export XSECURELOCK_SAVER
 
+# Reveal time for the ASCII image, in seconds: the first lock since login gets
+# the slow reveal, later locks the quick one (lock-saver also replays the quick
+# one on wake from suspend). The marker lives in /run/user, cleared on logout.
+first="${XDG_RUNTIME_DIR:-/tmp}/lock-screen-shown"
+if [ -e "$first" ]; then
+  LOCK_REVEAL=2
+else
+  LOCK_REVEAL=4
+  : > "$first"
+fi
+export LOCK_REVEAL
+
 # picom paints into the composite overlay window too; sharing it makes the
 # lock flicker against xsecurelock's "incompatible compositor" obscurer
 export XSECURELOCK_NO_COMPOSITE=1

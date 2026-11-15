@@ -23,6 +23,13 @@ exec --no-startup-id dex --autostart --environment i3
 # Use loginctl lock-session to lock your screen.
 exec --no-startup-id xss-lock --transfer-sleep-lock -- lock-screen
 bindsym $mod+Shift+x exec --no-startup-id loginctl lock-session
+# Shut down / reboot menu: the ASCII wallpaper dissolves first (configs/lock/ascii-power.sh)
+bindsym $mod+Shift+p exec --no-startup-id ascii-power
+# Power button: while i3 runs, logind leaves the key to us so the dissolve can
+# play first; outside the session (login screen, crashed X) logind powers off
+# as normal.
+exec --no-startup-id systemd-inhibit --what=handle-power-key --who=i3 --why="ascii-power handles it" sleep infinity
+bindsym XF86PowerOff exec --no-startup-id ascii-power poweroff
 
 # Random wallpaper at login; a systemd timer changes it every 2 minutes
 exec --no-startup-id wallpaper-rotate
