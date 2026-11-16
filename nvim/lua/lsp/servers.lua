@@ -19,6 +19,7 @@ vim.lsp.enable({
 	"lua_ls",
 	"marksman", -- markdown
 	"nixd",
+	"pyright", -- python
 	"sqls", -- sql / plsql (basic)
 	"svelte",
 	"tombi",

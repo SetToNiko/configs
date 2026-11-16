@@ -12,6 +12,8 @@ vim.pack.add({
 	{ src = "https://github.com/kdheepak/lazygit.nvim" },
 	{ src = "https://github.com/windwp/nvim-autopairs" },
 	{ src = "https://github.com/windwp/nvim-ts-autotag" },
+	{ src = "https://github.com/lewis6991/async.nvim" }, -- needed by refactoring.nvim on Neovim 0.12
+	{ src = "https://github.com/ThePrimeagen/refactoring.nvim" },
 })
 
 -- Colorscheme

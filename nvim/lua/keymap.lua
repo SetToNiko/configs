@@ -37,6 +37,10 @@ local function yazi_sidebar(path)
 	require("yazi").yazi({
 		config_home = vim.fn.stdpath("config") .. "/yazi-sidebar",
 		floating_window_scaling_factor = { height = 1, width = width },
+		keymaps = {
+			open_file_in_vertical_split = "s",
+			open_file_in_horizontal_split = "S",
+		},
 		hooks = {
 			before_opening_window = function(opts)
 				opts.row = 0
@@ -55,6 +59,32 @@ vim.keymap.set("n", "<leader>Y", "<cmd>Yazi cwd<cr>", { desc = "Yazi in working 
 vim.keymap.set("n", "<leader>t", function()
 	yazi_sidebar(vim.uv.cwd())
 end, { desc = "Yazi sidebar at current file" })
+
+-- Refactoring (expr mappings: in normal mode they wait for a motion/textobject)
+vim.keymap.set({ "n", "x" }, "<leader>re", function()
+	return require("refactoring").extract_func()
+end, { desc = "Extract function", expr = true })
+vim.keymap.set("n", "<leader>ree", function()
+	return require("refactoring").extract_func() .. "_"
+end, { desc = "Extract function (line)", expr = true })
+vim.keymap.set({ "n", "x" }, "<leader>rE", function()
+	return require("refactoring").extract_func_to_file()
+end, { desc = "Extract function to file", expr = true })
+vim.keymap.set({ "n", "x" }, "<leader>rv", function()
+	return require("refactoring").extract_var()
+end, { desc = "Extract variable", expr = true })
+vim.keymap.set("n", "<leader>rvv", function()
+	return require("refactoring").extract_var() .. "_"
+end, { desc = "Extract variable (line)", expr = true })
+vim.keymap.set({ "n", "x" }, "<leader>ri", function()
+	return require("refactoring").inline_var()
+end, { desc = "Inline variable", expr = true })
+vim.keymap.set({ "n", "x" }, "<leader>rI", function()
+	return require("refactoring").inline_func()
+end, { desc = "Inline function", expr = true })
+vim.keymap.set({ "n", "x" }, "<leader>rs", function()
+	return require("refactoring").select_refactor()
+end, { desc = "Select refactor" })
 
 -- Lazygit (floating window)
 vim.keymap.set("n", "<leader>lg", "<cmd>LazyGit<cr>", { desc = "Lazygit" })

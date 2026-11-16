@@ -4,6 +4,10 @@
       "rev": "0abc8f390b278c3b4aabc4c004ac8a088b65cf24",
       "src": "https://github.com/L3MON4D3/LuaSnip"
     },
+    "async.nvim": {
+      "rev": "028d843a892b4920d8306216369aeee9fbcebae5",
+      "src": "https://github.com/lewis6991/async.nvim"
+    },
     "autoclose.nvim": {
       "rev": "bafd0368716216fa6a7bb2a43ecd889b44efdb46",
       "src": "https://github.com/m4xshen/autoclose.nvim"
@@ -105,6 +109,10 @@
     "plenary.nvim": {
       "rev": "74b06c6c75e4eeb3108ec01852001636d85a932b",
       "src": "https://github.com/nvim-lua/plenary.nvim"
+    },
+    "refactoring.nvim": {
+      "rev": "ea18f97c58276e213736c9f0193f7aa4c690693e",
+      "src": "https://github.com/ThePrimeagen/refactoring.nvim"
     },
     "ripgrep": {
       "rev": "48a6ad93f152dc848f1883ceb3bf2c7baab6738c",
