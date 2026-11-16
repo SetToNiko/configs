@@ -34,30 +34,25 @@ echo "$name" > "$out/current"
 
 # Ghostty: the palette sets background, foreground and all 16 ANSI colours,
 # so programs using named terminal colours (starship, ls, git, yazi) match it.
-# A Ghostty theme of the same name, if there is one, still supplies the rest
-# (cursor, selection). Palettes made by hand have none, and naming a missing
-# theme is a Ghostty config error, so only name it when it exists, and take
-# cursor and selection colours from the palette otherwise. Without ghostty
-# on PATH it can't be checked: keep the theme line.
+# Which palette key goes where is in terminal-colors.json (shared with the
+# theme studio's preview). A Ghostty theme of the same name, if there is one,
+# still supplies the rest (cursor, selection). Palettes made by hand have
+# none, and naming a missing theme is a Ghostty config error, so only name it
+# when it exists, and take cursor and selection colours from the palette
+# otherwise ("without_theme"). Without ghostty on PATH it can't be checked:
+# keep the theme line.
 theme_line=1
 if ghostty_bin=$(command -v ghostty); then
   themes="$(dirname "$(readlink -f "$ghostty_bin")")/../share/ghostty/themes"
   [ -f "$themes/$name" ] || [ -f "$HOME/.config/ghostty/themes/$name" ] || theme_line=
 fi
-{ if [ -n "$theme_line" ]; then
-    printf 'theme = %s\n' "$name"
-  else
-    jq -r --arg n "$name" '.[$n]
-      | "cursor-color = \(.fg0)", "cursor-text = \(.bg0)",
-        "selection-background = \(.bg3)", "selection-foreground = \(.fg0)"' "$palettes"
-  fi
-  # 0 black, 1-6 accents, 7 white; 8-15 the bright versions
-  jq -r --arg n "$name" '.[$n]
-    | "background = \(.bg0)", "foreground = \(.fg0)",
-      ([.bg1, .red, .green, .yellow, .blue, .purple, .aqua, .fg0] | to_entries[]
-        | "palette = \(.key)=\(.value)"),
-      ([.grey0, .red, .green, .yellow, .blue, .purple, .aqua, .fg1] | to_entries[]
-        | "palette = \(.key + 8)=\(.value)")' \
+{ [ -n "$theme_line" ] && printf 'theme = %s\n' "$name"
+  jq -r --arg n "$name" --arg theme "$theme_line" \
+    --slurpfile map "$here/terminal-colors.json" '
+    .[$n] as $p | $map[0] as $m
+    | (if $theme == "" then $m.without_theme | to_entries[] | "\(.key) = \($p[.value])" else empty end),
+      "background = \($p[$m.background])", "foreground = \($p[$m.foreground])",
+      ($m.palette | to_entries[] | "palette = \(.key)=\($p[.value])")' \
     "$palettes"; } > "$out/ghostty"
 
 # rofi: raw colours only; config.rasi decides what uses them
