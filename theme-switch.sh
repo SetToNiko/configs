@@ -14,19 +14,54 @@
   if [ -n "$1" ]; then
     name=$1
   else
-    mapfile -t names < <(jq -r 'keys_unsorted[]' "$palettes")
-
-    # Start the menu on the scheme that's active now
     current=$(cat "$out/current" 2>/dev/null)
-    row=0
-    for i in "${!names[@]}"; do
-      [ "${names[$i]}" = "$current" ] && row=$i
-    done
+    row=-1
+    notice=
+    # Delete messages use the active palette's red
+    red=$(jq -r --arg n "$current" '.[$n].red // "#ff5555"' "$palettes")
+    while :; do
+      mapfile -t names < <(jq -r 'keys_unsorted[]' "$palettes")
 
-    idx=$(jq -r --arg cur "$current" "$menu_rows" "$palettes" |
-      rofi -dmenu -i -markup-rows -format i \
-        -selected-row "$row" -a "$row" -p "Theme") || exit 0
-    name=${names[$idx]}
+      active=0
+      for i in "${!names[@]}"; do
+        [ "${names[$i]}" = "$current" ] && active=$i
+      done
+      # First time round, start on the active scheme; after a delete, stay put
+      [ "$row" -lt 0 ] && row=$active
+      [ "$row" -ge "${#names[@]}" ] && row=$((${#names[@]} - 1))
+
+      # Hint line, with the result of the last delete (if any) above it
+      mesg="Enter: apply   Alt+BackSpace: delete from palettes.json"
+      [ -n "$notice" ] && mesg="<span foreground=\"$red\"><b>$notice</b></span>"$'\n'"$mesg"
+      notice=
+
+      # Alt+BackSpace (kb-custom-1) deletes the highlighted scheme; rofi exits with 10.
+      idx=$(jq -r --arg cur "$current" "$menu_rows" "$palettes" |
+        rofi -dmenu -i -markup-rows -format i \
+          -kb-custom-1 Alt+BackSpace -mesg "$mesg" \
+          -selected-row "$row" -a "$active" -p "Theme")
+      status=$?
+
+      if [ "$status" -eq 10 ] && [ -n "$idx" ]; then
+        row=$idx
+        # Keep the active scheme: activation falls back to a default without it
+        # Name escaped for rofi's Pango markup
+        label=$(printf '%s' "${names[$idx]}" | sed 's/&/\&amp;/g; s/</\&lt;/g; s/>/\&gt;/g')
+        if [ "${names[$idx]}" = "$current" ]; then
+          notice="Palette \"$label\" is active and can't be deleted"
+        else
+          tmp=$(mktemp) &&
+            jq --arg n "${names[$idx]}" 'del(.[$n])' "$palettes" > "$tmp" &&
+            cat "$tmp" > "$palettes" &&
+            notice="Palette \"$label\" deleted"
+          rm -f "$tmp"
+        fi
+        continue
+      fi
+      [ "$status" -eq 0 ] || exit 0
+      name=${names[$idx]}
+      break
+    done
   fi
 
   [ -n "$name" ] || exit 0
