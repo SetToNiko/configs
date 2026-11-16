@@ -1,5 +1,6 @@
--- Colours from the global theme (~/.config/colors/colors.sh, written by theme-switch.sh)
-local path = vim.fn.expand("~/.config/colors/colors.sh")
+-- Colours from the global theme (~/.config/colors/colors.sh, written by theme-switch.sh).
+-- $THEME_COLORS points at another file in the same format (the theme studio's draft palette).
+local path = vim.env.THEME_COLORS or vim.fn.expand("~/.config/colors/colors.sh")
 
 local function read_palette()
 	local ok, lines = pcall(vim.fn.readfile, path)
@@ -52,7 +53,7 @@ apply()
 local watcher = vim.uv.new_fs_event()
 local timer = vim.uv.new_timer()
 watcher:start(vim.fs.dirname(path), {}, function(err, filename)
-	if err or filename ~= "colors.sh" then
+	if err or filename ~= vim.fs.basename(path) then
 		return
 	end
 	-- short delay so we don't read the file half-written
