@@ -1,4 +1,6 @@
 gtk-titlebar = false
+# No GTK client-side decorations: square corners, so the i3 border fits flush
+window-decoration = none
 gtk-wide-tabs = false
 theme = Gruvbox Material
 window-theme = dark
