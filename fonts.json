@@ -7,6 +7,10 @@
     "ui": {
       "family": "JetBrainsMono Nerd Font",
       "size": 14
+    },
+    "bar": {
+      "family": "JetBrainsMono Nerd Font",
+      "size": 14
     }
   },
   "Geist Mono": {
@@ -17,6 +21,10 @@
     "ui": {
       "family": "GeistMono Nerd Font",
       "size": 9
+    },
+    "bar": {
+      "family": "GeistMono Nerd Font",
+      "size": 9
     }
   },
   "JetBrains + DejaVu Sans": {
@@ -25,6 +33,10 @@
       "size": 14
     },
     "ui": {
+      "family": "DejaVu Sans",
+      "size": 9
+    },
+    "bar": {
       "family": "DejaVu Sans",
       "size": 9
     }

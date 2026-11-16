@@ -1,8 +1,10 @@
 #!/usr/bin/env bash
-# Switch font preset. A preset (fonts.json) has two fonts:
+# Switch font preset. A preset (fonts.json) has three fonts:
 #   mono  terminal (Ghostty, so also nvim/yazi), lock screen, "monospace"
-#   ui    i3 titles and bar, rofi, GTK apps, "sans-serif"
-# Sizes get a per-host offset from ~/.config/host/fonts.json ({"mono": 0, "ui": 3}).
+#   ui    rofi, GTK apps, "sans-serif"
+#   bar   i3 window titles and the bar (i3blocks); falls back to ui if missing
+# Sizes get a per-host offset from ~/.config/host/fonts.json
+# ({"mono": 0, "ui": 3, "bar": 3}; bar falls back to the ui offset).
 # Usage: font-switch.sh <name>, or no argument for a rofi picker.
 here=$(dirname "$(readlink -f "$0")")
 fonts="${FONTS:-$here/fonts.json}"
@@ -13,7 +15,7 @@ out="$HOME/.config/fonts"
 menu_rows='def esc: gsub("&"; "&amp;") | gsub("<"; "&lt;") | gsub(">"; "&gt;");
   def sample: "<span font_family=\"\(.family | esc)\">\(.family | esc) \(.size)</span>";
   to_entries[]
-  | "<b>\(.key | esc)</b>   mono: \(.value.mono | sample)   ui: \(.value.ui | sample)"
+  | "<b>\(.key | esc)</b>   mono: \(.value.mono | sample)   ui: \(.value.ui | sample)   bar: \(.value.bar // .value.ui | sample)"
     + (if .key == $cur then "   <i>(active)</i>" else "" end)'
 
 if [ -n "$1" ]; then
@@ -30,12 +32,13 @@ fi
 jq -e --arg n "$name" 'has($n)' "$fonts" >/dev/null || { echo "no font preset '$name'" >&2; exit 1; }
 
 offsets=$(cat "$HOME/.config/host/fonts.json" 2>/dev/null) || offsets='{}'
-{ read -r mono; read -r mono_size; read -r ui; read -r ui_size; } < <(
+{ read -r mono; read -r mono_size; read -r ui; read -r ui_size; read -r bar; read -r bar_size; } < <(
   jq -r --arg n "$name" --argjson off "$offsets" '.[$n]
     | .mono.family, .mono.size + ($off.mono // 0),
-      .ui.family, .ui.size + ($off.ui // 0)' "$fonts")
+      .ui.family, .ui.size + ($off.ui // 0),
+      (.bar // .ui | .family), (.bar // .ui | .size) + ($off.bar // $off.ui // 0)' "$fonts")
 
-for family in "$mono" "$ui"; do
+for family in "$mono" "$ui" "$bar"; do
   fc-list -q ":family=$family" || echo "warning: font '$family' is not installed" >&2
 done
 
@@ -46,8 +49,8 @@ echo "$name" > "$out/current"
 # font-family's fallback list first.
 printf 'font-family = ""\nfont-family = "%s"\nfont-size = %s\n' "$mono" "$mono_size" > "$out/ghostty"
 
-# i3 window titles; the bar (i3blocks) uses the same font
-printf 'font pango:%s %s\n' "$ui" "$ui_size" > "$out/i3"
+# i3 window titles and the bar (i3blocks): the bar font
+printf 'font pango:%s %s\n' "$bar" "$bar_size" > "$out/i3"
 
 # rofi (imported from rofi/config.rasi)
 printf 'configuration {\n    font: "%s %s";\n}\n' "$ui" "$ui_size" > "$out/rofi.rasi"
