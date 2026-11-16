@@ -38,9 +38,16 @@ jq -r --arg n "$name" '.[$n] | to_entries[] | "set $\(.key) \(.value)"' \
 jq -r --arg n "$name" '.[$n] | to_entries[] | "\(.key)=\(.value)"' \
   "$palettes" > "$out/colors.sh"
 echo "$name" > "$out/current"
-# Ghostty: palette names are Ghostty theme names
-# plus the palette's background, so edits to bg in palettes.json reach the terminal
-printf 'theme = %s\nbackground = %s\n' "$name" "$(jq -r --arg n "$name" '.[$n].bg0' "$palettes")" > "$out/ghostty"
+# Ghostty: palette names are Ghostty theme names, plus the palette's own
+# background, foreground and ANSI accents (normal 1-6 and bright 9-14) on top,
+# so programs using named terminal colours (starship, ls, git) match the
+# palette even when the Ghostty theme differs or doesn't exist.
+{ printf 'theme = %s\n' "$name"
+  jq -r --arg n "$name" '.[$n]
+    | "background = \(.bg0)", "foreground = \(.fg0)",
+      ([.red, .green, .yellow, .blue, .purple, .aqua] | to_entries[]
+        | "palette = \(.key + 1)=\(.value)", "palette = \(.key + 9)=\(.value)")' \
+    "$palettes"; } > "$out/ghostty"
 
 # rofi: raw colours only; config.rasi decides what uses them
 { echo '* {'
