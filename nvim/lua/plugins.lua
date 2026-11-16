@@ -14,6 +14,7 @@ vim.pack.add({
 	{ src = "https://github.com/windwp/nvim-ts-autotag" },
 	{ src = "https://github.com/lewis6991/async.nvim" }, -- needed by refactoring.nvim on Neovim 0.12
 	{ src = "https://github.com/ThePrimeagen/refactoring.nvim" },
+	{ src = "https://github.com/MeanderingProgrammer/render-markdown.nvim" },
 })
 
 -- Colorscheme
@@ -31,6 +32,10 @@ require("nvim-autopairs").setup({ map_cr = false })
 
 -- Autotag: closes and renames html/svelte/jsx tags (uses treesitter parsers)
 require("nvim-ts-autotag").setup()
+
+-- Render Markdown: renders headings, lists, code blocks and tables in markdown buffers
+-- (uses the markdown/markdown_inline treesitter parsers and mini.icons)
+require("render-markdown").setup({})
 
 ----  Various Mini plugins
 -- Mini Highlight Patterns

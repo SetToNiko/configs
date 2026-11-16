@@ -114,6 +114,10 @@
       "rev": "ea18f97c58276e213736c9f0193f7aa4c690693e",
       "src": "https://github.com/ThePrimeagen/refactoring.nvim"
     },
+    "render-markdown.nvim": {
+      "rev": "8801162e041e34c64d0d1397cd1f353a14b01950",
+      "src": "https://github.com/MeanderingProgrammer/render-markdown.nvim"
+    },
     "ripgrep": {
       "rev": "48a6ad93f152dc848f1883ceb3bf2c7baab6738c",
       "src": "https://github.com/BurntSushi/ripgrep"
