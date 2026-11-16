@@ -8,7 +8,12 @@ end
 
 function M:peek(job)
 	local child = Command("doxx")
-		:arg({ "--export", "ansi", "--no-images", "-w", tostring(job.area.w), tostring(job.file.path) })
+		-- --color-depth 4: emit the 16 terminal palette colors instead of fixed RGB,
+		-- so the preview follows the current system (pywal/ghostty) palette
+		:arg({
+			"--export", "ansi", "--color-depth", "4", "--no-images",
+			"-w", tostring(job.area.w), tostring(job.file.path),
+		})
 		:stdout(Command.PIPED)
 		:stderr(Command.NULL)
 		:spawn()
