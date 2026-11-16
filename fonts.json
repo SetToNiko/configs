@@ -1,0 +1,32 @@
+{
+  "JetBrains Mono": {
+    "mono": {
+      "family": "JetBrainsMono Nerd Font",
+      "size": 14
+    },
+    "ui": {
+      "family": "JetBrainsMono Nerd Font",
+      "size": 14
+    }
+  },
+  "Geist Mono": {
+    "mono": {
+      "family": "GeistMono Nerd Font",
+      "size": 14
+    },
+    "ui": {
+      "family": "GeistMono Nerd Font",
+      "size": 9
+    }
+  },
+  "JetBrains + DejaVu Sans": {
+    "mono": {
+      "family": "JetBrainsMono Nerd Font",
+      "size": 14
+    },
+    "ui": {
+      "family": "DejaVu Sans",
+      "size": 9
+    }
+  }
+}

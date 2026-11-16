@@ -47,7 +47,9 @@ export XSECURELOCK_SHOW_HOSTNAME=0
 export XSECURELOCK_SHOW_KEYBOARD_LAYOUT=0
 export XSECURELOCK_SHOW_DATETIME=0
 export XSECURELOCK_PASSWORD_PROMPT=asterisks
+# Font from the font preset (font-switch.sh), GeistMono until one is set
 export XSECURELOCK_FONT='GeistMono Nerd Font:size=14'
+if [ -f "$HOME/.config/fonts/lock.sh" ]; then . "$HOME/.config/fonts/lock.sh"; fi
 # Keep the box up while locked instead of closing it after 5 idle minutes
 export XSECURELOCK_AUTH_TIMEOUT=86400
 

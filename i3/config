@@ -3,6 +3,8 @@
 # Please see https://i3wm.org/docs/userguide.html for a complete reference!
 
 include ~/.config/colors/i3
+# font preset (font-switch.sh): window titles and bar
+include ~/.config/fonts/i3
 include ~/.config/i3/theme 
 # theme settings have to be defined and set in another file because i3 redefines the imported colour variables before they're used in this one
 
@@ -10,7 +12,7 @@ set $mod Mod1
 
 set $refresh_i3status pkill -RTMIN+10 i3blocks
 
-# Host-specific settings (font size, monitors, brightness keys).
+# Host-specific settings (monitors, brightness keys).
 # ~/.config/host points at configs/hosts/<host>, set per machine in dotfiles-nixos.
 include ~/.config/host/i3.conf
 
@@ -196,3 +198,4 @@ default_border pixel 2
   # gaps inner 4
 
 bindsym $mod+t exec --no-startup-id bash ~/dotfiles-nixos/configs/theme-switch.sh
+bindsym $mod+Shift+t exec --no-startup-id bash ~/dotfiles-nixos/configs/font-switch.sh
