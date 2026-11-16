@@ -53,9 +53,11 @@ floating_modifier $mod
 
 # applicable class for starting programs as floating windows
 for_window [class="^floating\.term$"] floating enable, resize set 1920 1080, move position center
+# theme studio ($mod+Ctrl+t): nearly full screen (fits the portrait monitor too)
+for_window [class="^floating\.theme-studio$"] floating enable, resize set 96 ppt 92 ppt, move position center
 
 # adds 2 pixel border around ghostty windows
-for_window [class="^(com\.mitchellh\.ghostty|floating\.term)$"] border pixel 1
+for_window [class="^(com\.mitchellh\.ghostty|floating\.term|floating\.theme-studio)$"] border pixel 1
 
 # start a terminal
 bindsym $mod+g exec ghostty
@@ -199,3 +201,4 @@ default_border pixel 2
 
 bindsym $mod+t exec --no-startup-id bash ~/dotfiles-nixos/configs/theme-switch.sh
 bindsym $mod+Shift+t exec --no-startup-id bash ~/dotfiles-nixos/configs/font-switch.sh
+bindsym $mod+Ctrl+t exec --no-startup-id ghostty --class=floating.theme-studio -e theme-studio
