@@ -13,3 +13,9 @@ editors = [
 
 [open]
 prepend_rules = [{ url = "*.{txt,md,lua,nix,toml,yaml,yml,json,sh,py,ts,js,svelte,html,css,c,h,cpp}", use = "nvim" }, { url = "*", use = "rofi" }, { url = "*/", use = "editors" }]
+
+[plugin]
+# Preview .docx files with doxx (plugins/doxx.yazi)
+prepend_previewers = [
+  { url = "*.docx", run = "doxx" },
+]
