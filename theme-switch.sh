@@ -31,15 +31,33 @@ jq -r --arg n "$name" '.[$n] | to_entries[] | "set $\(.key) \(.value)"' \
 jq -r --arg n "$name" '.[$n] | to_entries[] | "\(.key)=\(.value)"' \
   "$palettes" > "$out/colors.sh"
 echo "$name" > "$out/current"
-# Ghostty: palette names are Ghostty theme names, plus the palette's own
-# background, foreground and ANSI accents (normal 1-6 and bright 9-14) on top,
-# so programs using named terminal colours (starship, ls, git) match the
-# palette even when the Ghostty theme differs or doesn't exist.
-{ printf 'theme = %s\n' "$name"
+
+# Ghostty: the palette sets background, foreground and all 16 ANSI colours,
+# so programs using named terminal colours (starship, ls, git, yazi) match it.
+# A Ghostty theme of the same name, if there is one, still supplies the rest
+# (cursor, selection). Palettes made by hand have none, and naming a missing
+# theme is a Ghostty config error, so only name it when it exists, and take
+# cursor and selection colours from the palette otherwise. Without ghostty
+# on PATH it can't be checked: keep the theme line.
+theme_line=1
+if ghostty_bin=$(command -v ghostty); then
+  themes="$(dirname "$(readlink -f "$ghostty_bin")")/../share/ghostty/themes"
+  [ -f "$themes/$name" ] || [ -f "$HOME/.config/ghostty/themes/$name" ] || theme_line=
+fi
+{ if [ -n "$theme_line" ]; then
+    printf 'theme = %s\n' "$name"
+  else
+    jq -r --arg n "$name" '.[$n]
+      | "cursor-color = \(.fg0)", "cursor-text = \(.bg0)",
+        "selection-background = \(.bg3)", "selection-foreground = \(.fg0)"' "$palettes"
+  fi
+  # 0 black, 1-6 accents, 7 white; 8-15 the bright versions
   jq -r --arg n "$name" '.[$n]
     | "background = \(.bg0)", "foreground = \(.fg0)",
-      ([.red, .green, .yellow, .blue, .purple, .aqua] | to_entries[]
-        | "palette = \(.key + 1)=\(.value)", "palette = \(.key + 9)=\(.value)")' \
+      ([.bg1, .red, .green, .yellow, .blue, .purple, .aqua, .fg0] | to_entries[]
+        | "palette = \(.key)=\(.value)"),
+      ([.grey0, .red, .green, .yellow, .blue, .purple, .aqua, .fg1] | to_entries[]
+        | "palette = \(.key + 8)=\(.value)")' \
     "$palettes"; } > "$out/ghostty"
 
 # rofi: raw colours only; config.rasi decides what uses them
