@@ -51,13 +51,15 @@ bindsym XF86AudioRaiseVolume exec --no-startup-id wpctl set-volume -l 1.0 @DEFAU
 # Use Mouse+$mod to drag floating windows to their wanted position
 floating_modifier $mod
 
-# applicable class for starting programs as floating windows
-for_window [class="^floating\.term$"] floating enable, resize set 1920 1080, move position center
-# theme studio ($mod+Ctrl+t): nearly full screen (fits the portrait monitor too)
-for_window [class="^floating\.theme-studio$"] floating enable, resize set 96 ppt 92 ppt, move position center
+# applicable class for starting programs as floating windows; sized as a
+# share of the monitor so they fit the portrait one too (75% = the old 1920x1080 on 2560x1440)
+for_window [class="^floating\.term$"] floating enable, resize set 75 ppt 75 ppt, move position center
+# theme studio ($mod+Ctrl+t): nearly full screen, with a 4px border that is easy
+# to grab for resizing (it reflows to any size)
+for_window [class="^floating\.theme-studio$"] floating enable, resize set 96 ppt 92 ppt, move position center, border pixel 4
 
 # adds 2 pixel border around ghostty windows
-for_window [class="^(com\.mitchellh\.ghostty|floating\.term|floating\.theme-studio)$"] border pixel 1
+for_window [class="^(com\.mitchellh\.ghostty|floating\.term)$"] border pixel 1
 
 # start a terminal
 bindsym $mod+g exec ghostty
