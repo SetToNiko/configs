@@ -2,7 +2,8 @@
 # Switch colour scheme.
 # Usage: theme-switch.sh <name>, or no argument for a rofi picker.
 here=$(dirname "$(readlink -f "$0")")
-palettes="${PALETTES:-$here/palettes.json}"
+. "$here/lib/paths.sh" # data_file, share_file
+palettes="${PALETTES:-$(data_file palettes.json)}"
 out="$HOME/.config/colors"
 . "$here/lib/rofi-picker.sh" # json_picker, json_data (either palettes.json layout)
 
@@ -52,7 +53,7 @@ if ghostty_bin=$(command -v ghostty); then
 fi
 { [ -n "$theme_line" ] && printf 'theme = %s\n' "$name"
   jq -r --arg n "$name" --arg theme "$theme_line" \
-    --slurpfile map "$here/terminal-colors.json" '
+    --slurpfile map "$(share_file terminal-colors.json)" '
     .[$n] as $p | $map[0] as $m
     | (if $theme == "" then $m.without_theme | to_entries[] | "\(.key) = \($p[.value])" else empty end),
       "background = \($p[$m.background])", "foreground = \($p[$m.foreground])",
@@ -64,9 +65,9 @@ fi
   jq -r --arg n "$name" '.[$n] | to_entries[] | "    \(.key | gsub("_"; "-")): \(.value);"' "$data"
   echo '}'; } > "$out/rofi.rasi"
 
-# Firefox (Pywalfox): mapping lives in configs/pywalfox/colors.jq
+# Firefox (Pywalfox): the mapping is pywalfox-colors.jq (configs/pywalfox/colors.jq before the move)
 mkdir -p "$HOME/.cache/wal"
-jq --arg n "$name" -f "$here/pywalfox/colors.jq" \
+jq --arg n "$name" -f "$(share_file pywalfox-colors.jq pywalfox/colors.jq)" \
   "$data" > "$HOME/.cache/wal/colors.json"
 
 if [ -z "$NO_RESTART" ]; then

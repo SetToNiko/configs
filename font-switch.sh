@@ -12,7 +12,8 @@
 # proportional offset).
 # Usage: font-switch.sh <name>, or no argument for a rofi picker.
 here=$(dirname "$(readlink -f "$0")")
-fonts="${FONTS:-$here/fonts.json}"
+. "$here/lib/paths.sh" # data_file, share_file
+fonts="${FONTS:-$(data_file fonts.json)}"
 out="$HOME/.config/fonts"
 . "$here/lib/rofi-picker.sh" # json_picker, json_data (either fonts.json layout)
 
@@ -82,12 +83,28 @@ printf 'export XSECURELOCK_FONT=%q\n' "$mono:size=$mono_size" > "$out/lock.sh"
 boot=/var/lib/ascii-boot
 template=/etc/ascii-boot/greeter.conf.in
 if [ -w "$boot" ] && [ -f "$template" ]; then
-  file=$(fc-match -f '%{file}' "$mono:style=Regular")
-  matched=$(fc-match -f '%{family[0]}' "$mono:style=Regular")
-  if [ "$matched" = "$mono" ] && [ -f "$file" ]; then
+  # The font's own file, the regular face (fc-match -s lists the best match
+  # first), and one that still exists. $boot/font is a fontconfig folder
+  # too: when the copy there is this font, fontconfig lists it in place of
+  # the original, and it stays as it is.
+  file= copied=
+  while IFS=$'\t' read -r fam f; do
+    [ "$fam" = "$mono" ] && [ -f "$f" ] || continue
+    case $f in
+      "$boot"/*) [ -n "$copied" ] || copied=$f ;;
+      *) file=$f; break ;;
+    esac
+  done < <(fc-match -s -f '%{family[0]}\t%{file}\n' ":family=$mono:style=Regular")
+  if [ -z "$file" ] && [ -n "$copied" ]; then
+    login_font=$mono
+  elif [ -n "$file" ]; then
     mkdir -p "$boot/font"
-    rm -f "$boot/font/"*
-    cp "$file" "$boot/font/"
+    # copy first, then drop the others (the copy may share the old one's name)
+    cp -f "$file" "$boot/font/"
+    keep=$(basename "$file")
+    for old in "$boot/font/"*; do
+      [ "$(basename "$old")" = "$keep" ] || rm -f "$old"
+    done
     login_font=$mono
   else
     echo "warning: no file for '$mono'; the login screen keeps monospace" >&2

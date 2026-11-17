@@ -4,8 +4,9 @@
 # palette's switch then reloads Ghostty and restarts i3 once for both.
 # Usage: themes-switch.sh <name>, or no argument for a rofi picker.
 here=$(dirname "$(readlink -f "$0")")
-themes="${THEMES:-$here/themes.json}"
-palettes="${PALETTES:-$here/palettes.json}"
+. "$here/lib/paths.sh" # data_file, share_file
+themes="${THEMES:-$(data_file themes.json)}"
+palettes="${PALETTES:-$(data_file palettes.json)}"
 out="$HOME/.config/colors"
 . "$here/lib/rofi-picker.sh" # json_picker, json_data
 
