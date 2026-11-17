@@ -1,10 +1,15 @@
 #!/usr/bin/env bash
-# Switch font preset. A preset (fonts.json) has three fonts:
-#   mono  terminal (Ghostty, so also nvim/yazi), lock screen, "monospace"
-#   ui    rofi, GTK apps, "sans-serif"
-#   bar   i3 window titles and the bar (i3blocks); falls back to ui if missing
+# Switch font preset. A preset (fonts.json) has three fonts, each named after
+# what it has to be:
+#   monospace     a Nerd Font Mono: terminal (Ghostty, so also nvim/yazi),
+#                 lock screen, "monospace"
+#   proportional  rofi, GTK apps, "sans-serif"
+#   icons         a Nerd Font Propo: i3 window titles and the bar (i3blocks);
+#                 falls back to proportional if missing
+# (Before fonts.json version 3 they were mono, ui and bar; both are read.)
 # Sizes get a per-host offset from ~/.config/host/fonts.json
-# ({"mono": 0, "ui": 3, "bar": 3}; bar falls back to the ui offset).
+# ({"monospace": 0, "proportional": 3, "icons": 3}; icons falls back to the
+# proportional offset).
 # Usage: font-switch.sh <name>, or no argument for a rofi picker.
 here=$(dirname "$(readlink -f "$0")")
 fonts="${FONTS:-$here/fonts.json}"
@@ -15,8 +20,10 @@ out="$HOME/.config/fonts"
 # and "(active)" after the current preset
 menu_rows='def esc: gsub("&"; "&amp;") | gsub("<"; "&lt;") | gsub(">"; "&gt;");
   def sample: "<span font_family=\"\(.family | esc)\">\(.family | esc) \(.size)</span>";
+  def role($new; $old): .[$new] // .[$old];
   to_entries[]
-  | "<b>\(.key | esc)</b>   mono: \(.value.mono | sample)   ui: \(.value.ui | sample)   bar: \(.value.bar // .value.ui | sample)"
+  | (.value | role("proportional"; "ui")) as $ui
+  | "<b>\(.key | esc)</b>   monospace: \(.value | role("monospace"; "mono") | sample)   proportional: \($ui | sample)   icons: \(.value | role("icons"; "bar") // $ui | sample)"
     + (if .key == $cur then "   <i>(active)</i>" else "" end)'
 
 if [ -n "$1" ]; then
@@ -37,10 +44,16 @@ jq -e --arg n "$name" 'has($n)' "$data" >/dev/null || { echo "no font preset '$n
 
 offsets=$(cat "$HOME/.config/host/fonts.json" 2>/dev/null) || offsets='{}'
 { read -r mono; read -r mono_size; read -r ui; read -r ui_size; read -r bar; read -r bar_size; } < <(
-  jq -r --arg n "$name" --argjson off "$offsets" '.[$n]
-    | .mono.family, .mono.size + ($off.mono // 0),
-      .ui.family, .ui.size + ($off.ui // 0),
-      (.bar // .ui | .family), (.bar // .ui | .size) + ($off.bar // $off.ui // 0)' "$data")
+  jq -r --arg n "$name" --argjson off "$offsets" '
+    def role($new; $old): .[$new] // .[$old];
+    ($off | role("proportional"; "ui") // 0) as $ui_off
+    | .[$n] as $p
+    | ($p | role("monospace"; "mono")) as $m
+    | ($p | role("proportional"; "ui")) as $u
+    | ($p | role("icons"; "bar") // $u) as $b
+    | $m.family, $m.size + ($off | role("monospace"; "mono") // 0),
+      $u.family, $u.size + $ui_off,
+      $b.family, $b.size + ($off | role("icons"; "bar") // $ui_off)' "$data")
 
 for family in "$mono" "$ui" "$bar"; do
   fc-list -q ":family=$family" || echo "warning: font '$family' is not installed" >&2
@@ -53,7 +66,7 @@ echo "$name" > "$out/current"
 # font-family's fallback list first.
 printf 'font-family = ""\nfont-family = "%s"\nfont-size = %s\n' "$mono" "$mono_size" > "$out/ghostty"
 
-# i3 window titles and the bar (i3blocks): the bar font
+# i3 window titles and the bar (i3blocks): the icons font
 printf 'font pango:%s %s\n' "$bar" "$bar_size" > "$out/i3"
 
 # rofi (imported from rofi/config.rasi)
@@ -61,6 +74,29 @@ printf 'configuration {\n    font: "%s %s";\n}\n' "$ui" "$ui_size" > "$out/rofi.
 
 # Lock screen (sourced by lock/lock-screen.sh)
 printf 'export XSECURELOCK_FONT=%q\n' "$mono:size=$mono_size" > "$out/lock.sh"
+
+# Login screen (LightDM's mini greeter, modules/ascii-boot.nix): it runs as
+# lightdm and can't see our fonts, so the monospace font's regular file is
+# copied to /var/lib/ascii-boot/font (a system fontconfig folder) and the
+# greeter config is filled in from its template. Shows at the next login.
+boot=/var/lib/ascii-boot
+template=/etc/ascii-boot/greeter.conf.in
+if [ -w "$boot" ] && [ -f "$template" ]; then
+  file=$(fc-match -f '%{file}' "$mono:style=Regular")
+  matched=$(fc-match -f '%{family[0]}' "$mono:style=Regular")
+  if [ "$matched" = "$mono" ] && [ -f "$file" ]; then
+    mkdir -p "$boot/font"
+    rm -f "$boot/font/"*
+    cp "$file" "$boot/font/"
+    login_font=$mono
+  else
+    echo "warning: no file for '$mono'; the login screen keeps monospace" >&2
+    login_font=monospace
+  fi
+  esc=$(printf '%s' "$login_font" | sed 's/[&|\\]/\\&/g')
+  sed "s|@FONT@|$esc|; s|@SIZE@|${mono_size}pt|" "$template" > "$boot/greeter.conf.tmp" &&
+    mv -f "$boot/greeter.conf.tmp" "$boot/greeter.conf"
+fi
 
 # GTK 3 and 4: set gtk-font-name in [Settings], keeping any other settings.
 # Apps pick it up when they next start.
