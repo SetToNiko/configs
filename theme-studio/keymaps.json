@@ -311,6 +311,57 @@
             "c"
           ]
         },
+        "downloads": {
+          "tab-next": [
+            "]"
+          ],
+          "tab-previous": [
+            "["
+          ],
+          "delete": [
+            "d",
+            "<Del>"
+          ],
+          "back": [
+            "<Esc>"
+          ],
+          "confirm": [
+            "<CR>"
+          ],
+          "up": [
+            "k",
+            "<Up>"
+          ],
+          "down": [
+            "j",
+            "<Down>"
+          ],
+          "left": [
+            "h",
+            "<Left>"
+          ],
+          "right": [
+            "l",
+            "<Right>"
+          ],
+          "top": [
+            "g",
+            "<Home>"
+          ],
+          "bottom": [
+            "G",
+            "<End>"
+          ],
+          "page-up": [
+            "<PageUp>"
+          ],
+          "page-down": [
+            "<PageDown>"
+          ],
+          "search": [
+            "/"
+          ]
+        },
         "settings": {
           "discard-changes": [
             "D"
@@ -739,6 +790,57 @@
           ],
           "show-cjk-emoji-math": [
             "c"
+          ]
+        },
+        "downloads": {
+          "tab-next": [
+            "]"
+          ],
+          "tab-previous": [
+            "["
+          ],
+          "delete": [
+            "d",
+            "<Del>"
+          ],
+          "back": [
+            "<Esc>"
+          ],
+          "confirm": [
+            "<CR>"
+          ],
+          "up": [
+            "k",
+            "<Up>"
+          ],
+          "down": [
+            "j",
+            "<Down>"
+          ],
+          "left": [
+            "h",
+            "<Left>"
+          ],
+          "right": [
+            "l",
+            "<Right>"
+          ],
+          "top": [
+            "gg",
+            "<Home>"
+          ],
+          "bottom": [
+            "ge",
+            "<End>"
+          ],
+          "page-up": [
+            "<PageUp>"
+          ],
+          "page-down": [
+            "<PageDown>"
+          ],
+          "search": [
+            "/"
           ]
         },
         "settings": {
@@ -1173,6 +1275,60 @@
             "c"
           ]
         },
+        "downloads": {
+          "tab-next": [
+            "]"
+          ],
+          "tab-previous": [
+            "["
+          ],
+          "delete": [
+            "d",
+            "<Del>"
+          ],
+          "back": [
+            "<Esc>",
+            "<C-g>"
+          ],
+          "confirm": [
+            "<CR>"
+          ],
+          "up": [
+            "<Up>",
+            "<C-p>"
+          ],
+          "down": [
+            "<Down>",
+            "<C-n>"
+          ],
+          "left": [
+            "<Left>",
+            "<C-b>"
+          ],
+          "right": [
+            "<Right>",
+            "<C-f>"
+          ],
+          "top": [
+            "<Home>",
+            "<C-Home>"
+          ],
+          "bottom": [
+            "<End>",
+            "<C-End>"
+          ],
+          "page-up": [
+            "<PageUp>"
+          ],
+          "page-down": [
+            "<PageDown>",
+            "<C-v>"
+          ],
+          "search": [
+            "<C-s>",
+            "/"
+          ]
+        },
         "settings": {
           "discard-changes": [
             "D"
@@ -1590,6 +1746,54 @@
             "c"
           ]
         },
+        "downloads": {
+          "tab-next": [
+            "]"
+          ],
+          "tab-previous": [
+            "["
+          ],
+          "delete": [
+            "d",
+            "<Del>"
+          ],
+          "back": [
+            "<Esc>"
+          ],
+          "confirm": [
+            "<CR>"
+          ],
+          "up": [
+            "<Up>"
+          ],
+          "down": [
+            "<Down>"
+          ],
+          "left": [
+            "<Left>"
+          ],
+          "right": [
+            "<Right>"
+          ],
+          "top": [
+            "<Home>",
+            "<C-Home>"
+          ],
+          "bottom": [
+            "<End>",
+            "<C-End>"
+          ],
+          "page-up": [
+            "<PageUp>"
+          ],
+          "page-down": [
+            "<PageDown>"
+          ],
+          "search": [
+            "<C-f>",
+            "/"
+          ]
+        },
         "settings": {
           "discard-changes": [
             "D"
@@ -1986,6 +2190,54 @@
           ],
           "show-cjk-emoji-math": [
             "c"
+          ]
+        },
+        "downloads": {
+          "tab-next": [
+            "]"
+          ],
+          "tab-previous": [
+            "["
+          ],
+          "delete": [
+            "d",
+            "<Del>"
+          ],
+          "back": [
+            "<Esc>"
+          ],
+          "confirm": [
+            "<CR>"
+          ],
+          "up": [
+            "<Up>"
+          ],
+          "down": [
+            "<Down>"
+          ],
+          "left": [
+            "<Left>"
+          ],
+          "right": [
+            "<Right>"
+          ],
+          "top": [
+            "<Home>",
+            "<C-Home>"
+          ],
+          "bottom": [
+            "<End>",
+            "<C-End>"
+          ],
+          "page-up": [
+            "<PageUp>"
+          ],
+          "page-down": [
+            "<PageDown>"
+          ],
+          "search": [
+            "<C-f>",
+            "/"
           ]
         },
         "settings": {
