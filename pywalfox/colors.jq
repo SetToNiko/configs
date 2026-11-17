@@ -1,1 +1,0 @@
-../../theme-studio/share/pywalfox-colors.jq

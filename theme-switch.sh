@@ -1,1 +1,0 @@
-../theme-studio/scripts/theme-switch.sh

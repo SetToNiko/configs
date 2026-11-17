@@ -1,1 +1,0 @@
-../theme-studio/share/palette-derive.jq

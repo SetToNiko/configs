@@ -1,1 +1,0 @@
-../../theme-studio/scripts/lib/paths.sh
