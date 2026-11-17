@@ -1,5 +1,5 @@
 {
-  "mono": 0,
-  "ui": 3,
-  "bar": 3
+  "monospace": 0,
+  "proportional": 3,
+  "icons": 3
 }

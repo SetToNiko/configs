@@ -1,5 +1,5 @@
 {
-  "version": 2,
+  "version": 3,
   "active": "Vim",
   "presets": {
     "Vim": {
@@ -20,6 +20,12 @@
           ],
           "page-settings": [
             "<F3>"
+          ],
+          "toggle-hints": [
+            "<leader>th"
+          ],
+          "toggle-preview": [
+            "<leader>tp"
           ],
           "pane-left": [
             "<C-w>h"
@@ -224,6 +230,9 @@
           ]
         },
         "font-roles": {
+          "fix-role-font": [
+            "r"
+          ],
           "up": [
             "k",
             "<Up>"
@@ -342,6 +351,18 @@
           "preview-previous-page": [
             "<lt>"
           ],
+          "fill-roles-from-family": [
+            "F"
+          ],
+          "tournament-names": [
+            "n"
+          ],
+          "tournament-bracket": [
+            "b"
+          ],
+          "tournament-undo": [
+            "u"
+          ],
           "tab-next": [
             "]"
           ],
@@ -351,6 +372,15 @@
           "delete": [
             "d",
             "<Del>"
+          ],
+          "use-for-monospace": [
+            "1"
+          ],
+          "use-for-proportional": [
+            "2"
+          ],
+          "use-for-icons": [
+            "3"
           ],
           "back": [
             "<Esc>"
@@ -537,6 +567,12 @@
           ],
           "page-settings": [
             "<F3>"
+          ],
+          "toggle-hints": [
+            "<leader>th"
+          ],
+          "toggle-preview": [
+            "<leader>tp"
           ],
           "pane-left": [
             "<C-w>h"
@@ -742,6 +778,9 @@
           ]
         },
         "font-roles": {
+          "fix-role-font": [
+            "r"
+          ],
           "up": [
             "k",
             "<Up>"
@@ -860,6 +899,18 @@
           "preview-previous-page": [
             "<lt>"
           ],
+          "fill-roles-from-family": [
+            "F"
+          ],
+          "tournament-names": [
+            "n"
+          ],
+          "tournament-bracket": [
+            "b"
+          ],
+          "tournament-undo": [
+            "u"
+          ],
           "tab-next": [
             "]"
           ],
@@ -869,6 +920,15 @@
           "delete": [
             "d",
             "<Del>"
+          ],
+          "use-for-monospace": [
+            "1"
+          ],
+          "use-for-proportional": [
+            "2"
+          ],
+          "use-for-icons": [
+            "3"
           ],
           "back": [
             "<Esc>"
@@ -1054,6 +1114,12 @@
           ],
           "page-settings": [
             "<F3>"
+          ],
+          "toggle-hints": [
+            "<leader>th"
+          ],
+          "toggle-preview": [
+            "<leader>tp"
           ],
           "pane-left": [
             "<C-x><Left>"
@@ -1259,6 +1325,9 @@
           ]
         },
         "font-roles": {
+          "fix-role-font": [
+            "r"
+          ],
           "up": [
             "<Up>",
             "<C-p>"
@@ -1380,6 +1449,18 @@
           "preview-previous-page": [
             "<lt>"
           ],
+          "fill-roles-from-family": [
+            "F"
+          ],
+          "tournament-names": [
+            "n"
+          ],
+          "tournament-bracket": [
+            "b"
+          ],
+          "tournament-undo": [
+            "u"
+          ],
           "tab-next": [
             "]"
           ],
@@ -1389,6 +1470,15 @@
           "delete": [
             "d",
             "<Del>"
+          ],
+          "use-for-monospace": [
+            "1"
+          ],
+          "use-for-proportional": [
+            "2"
+          ],
+          "use-for-icons": [
+            "3"
           ],
           "back": [
             "<Esc>",
@@ -1576,6 +1666,12 @@
           ],
           "page-settings": [
             "<F3>"
+          ],
+          "toggle-hints": [
+            "<leader>th"
+          ],
+          "toggle-preview": [
+            "<leader>tp"
           ],
           "pane-left": [
             "<leader><Left>"
@@ -1777,6 +1873,9 @@
           ]
         },
         "font-roles": {
+          "fix-role-font": [
+            "r"
+          ],
           "up": [
             "<Up>"
           ],
@@ -1888,6 +1987,18 @@
           "preview-previous-page": [
             "<lt>"
           ],
+          "fill-roles-from-family": [
+            "F"
+          ],
+          "tournament-names": [
+            "n"
+          ],
+          "tournament-bracket": [
+            "b"
+          ],
+          "tournament-undo": [
+            "u"
+          ],
           "tab-next": [
             "]"
           ],
@@ -1897,6 +2008,15 @@
           "delete": [
             "d",
             "<Del>"
+          ],
+          "use-for-monospace": [
+            "1"
+          ],
+          "use-for-proportional": [
+            "2"
+          ],
+          "use-for-icons": [
+            "3"
           ],
           "back": [
             "<Esc>"
@@ -2066,6 +2186,12 @@
           ],
           "page-settings": [
             "<F3>"
+          ],
+          "toggle-hints": [
+            "<leader>th"
+          ],
+          "toggle-preview": [
+            "<leader>tp"
           ],
           "pane-left": [
             "<leader><Left>"
@@ -2260,6 +2386,9 @@
           ]
         },
         "font-roles": {
+          "fix-role-font": [
+            "r"
+          ],
           "up": [
             "<Up>"
           ],
@@ -2371,6 +2500,18 @@
           "preview-previous-page": [
             "<lt>"
           ],
+          "fill-roles-from-family": [
+            "F"
+          ],
+          "tournament-names": [
+            "n"
+          ],
+          "tournament-bracket": [
+            "b"
+          ],
+          "tournament-undo": [
+            "u"
+          ],
           "tab-next": [
             "]"
           ],
@@ -2380,6 +2521,15 @@
           "delete": [
             "d",
             "<Del>"
+          ],
+          "use-for-monospace": [
+            "1"
+          ],
+          "use-for-proportional": [
+            "2"
+          ],
+          "use-for-icons": [
+            "3"
           ],
           "back": [
             "<Esc>"
@@ -2526,6 +2676,551 @@
             "<S-Left>"
           ],
           "right-big": [
+            "<S-Right>"
+          ]
+        }
+      }
+    },
+    "new-preset": {
+      "leader": "<Space>",
+      "bindings": {
+        "global": {
+          "quit": [
+            "q"
+          ],
+          "help": [
+            "*"
+          ],
+          "page-main": [
+            "<F1>"
+          ],
+          "page-downloads": [
+            "<F2>"
+          ],
+          "page-settings": [
+            "<F3>"
+          ],
+          "toggle-hints": [
+            "<leader>th"
+          ],
+          "toggle-preview": [
+            "<leader>tp"
+          ],
+          "pane-left": [
+            "<C-w>h"
+          ],
+          "pane-right": [
+            "<C-w>l"
+          ],
+          "pane-up": [
+            "<C-w>k"
+          ],
+          "pane-down": [
+            "<C-w>j"
+          ],
+          "resize-mode": [
+            "<leader>r"
+          ],
+          "undo-config-change": [
+            "<leader>u"
+          ],
+          "open-palette": [
+            "<leader>op"
+          ],
+          "open-font-preset": [
+            "<leader>of"
+          ],
+          "new-palette": [
+            "<leader>np"
+          ],
+          "new-font-preset": [
+            "<leader>nf"
+          ],
+          "preview-cycle": [
+            "<F12>"
+          ],
+          "save-palette": [
+            "<leader>sp"
+          ],
+          "save-fonts": [
+            "<leader>sf"
+          ],
+          "apply-palette": [
+            "<leader>ap"
+          ],
+          "apply-fonts": [
+            "<leader>af"
+          ],
+          "save": [
+            "s"
+          ],
+          "save-as": [
+            "S"
+          ],
+          "apply": [
+            "a"
+          ],
+          "open": [
+            "o"
+          ],
+          "new": [
+            "n"
+          ],
+          "panel-1": [
+            "<leader>1"
+          ],
+          "panel-2": [
+            "<leader>2"
+          ],
+          "panel-3": [
+            "<leader>3"
+          ],
+          "panel-4": [
+            "<leader>4"
+          ],
+          "panel-5": [
+            "<leader>5"
+          ],
+          "panel-6": [
+            "<leader>6"
+          ],
+          "panel-7": [
+            "<leader>7"
+          ]
+        },
+        "colours": {
+          "toggle-picker": [
+            "<leader>cp"
+          ],
+          "undo": [
+            "u"
+          ],
+          "redo": [
+            "<C-r>"
+          ],
+          "focus-next": [
+            "<Tab>"
+          ],
+          "focus-previous": [
+            "<S-Tab>"
+          ],
+          "back": [
+            "<Esc>"
+          ],
+          "pin": [
+            "p"
+          ],
+          "copy-hex": [
+            "y"
+          ],
+          "copy-from": [
+            "c"
+          ],
+          "hex-entry": [
+            "#"
+          ],
+          "toggle-yazi": [
+            "Y"
+          ],
+          "toggle-rofi": [
+            "R"
+          ],
+          "toggle-view": [
+            "V"
+          ]
+        },
+        "colour-list": {
+          "confirm": [
+            "<CR>"
+          ],
+          "up": [
+            "k",
+            "<Up>"
+          ],
+          "down": [
+            "j",
+            "<Down>"
+          ],
+          "right": [
+            "l",
+            "<Right>"
+          ],
+          "top": [
+            "g",
+            "<Home>"
+          ],
+          "bottom": [
+            "G",
+            "<End>"
+          ],
+          "page-up": [
+            "<PageUp>"
+          ],
+          "page-down": [
+            "<PageDown>"
+          ]
+        },
+        "picker": {
+          "confirm": [
+            "<CR>"
+          ],
+          "up": [
+            "k",
+            "<Up>"
+          ],
+          "down": [
+            "j",
+            "<Down>"
+          ],
+          "left": [
+            "h",
+            "<Left>"
+          ],
+          "right": [
+            "l",
+            "<Right>"
+          ],
+          "up-big": [
+            "K",
+            "<S-Up>"
+          ],
+          "down-big": [
+            "J",
+            "<S-Down>"
+          ],
+          "left-big": [
+            "H",
+            "<S-Left>"
+          ],
+          "right-big": [
+            "L",
+            "<S-Right>"
+          ]
+        },
+        "fonts": {
+          "toggle-sample": [
+            "<leader>fs"
+          ],
+          "focus-next": [
+            "<Tab>"
+          ],
+          "focus-previous": [
+            "<S-Tab>"
+          ]
+        },
+        "font-roles": {
+          "fix-role-font": [
+            "r"
+          ],
+          "up": [
+            "k",
+            "<Up>"
+          ],
+          "down": [
+            "j",
+            "<Down>"
+          ],
+          "left": [
+            "h",
+            "<Left>"
+          ],
+          "right": [
+            "l",
+            "<Right>"
+          ],
+          "left-big": [
+            "H"
+          ],
+          "right-big": [
+            "L"
+          ],
+          "size-up": [
+            "+",
+            "="
+          ],
+          "size-down": [
+            "-"
+          ],
+          "pick-font": [
+            "<CR>",
+            "f"
+          ]
+        },
+        "font-list": {
+          "fill-roles-from-family": [
+            "F"
+          ],
+          "back": [
+            "<Esc>"
+          ],
+          "confirm": [
+            "<CR>"
+          ],
+          "up": [
+            "k",
+            "<Up>"
+          ],
+          "down": [
+            "j",
+            "<Down>"
+          ],
+          "left": [
+            "h",
+            "<Left>"
+          ],
+          "right": [
+            "l",
+            "<Right>"
+          ],
+          "top": [
+            "g",
+            "<Home>"
+          ],
+          "bottom": [
+            "G",
+            "<End>"
+          ],
+          "page-up": [
+            "<PageUp>"
+          ],
+          "page-down": [
+            "<PageDown>"
+          ],
+          "search": [
+            "/"
+          ],
+          "filter-mono": [
+            "m"
+          ],
+          "filter-propo": [
+            "p"
+          ],
+          "filter-nerd-font": [
+            "n"
+          ],
+          "filter-nerd-font-mono": [
+            "M"
+          ],
+          "filter-nerd-font-propo": [
+            "P"
+          ],
+          "filter-no-nerd-font": [
+            "x"
+          ],
+          "show-bitmap": [
+            "b"
+          ],
+          "show-cjk-emoji-math": [
+            "c"
+          ]
+        },
+        "downloads": {
+          "preview-fetch": [
+            "p"
+          ],
+          "preview-text": [
+            "t"
+          ],
+          "preview-language": [
+            "L"
+          ],
+          "preview-next-page": [
+            ">"
+          ],
+          "preview-previous-page": [
+            "<lt>"
+          ],
+          "fill-roles-from-family": [
+            "F"
+          ],
+          "tournament-names": [
+            "n"
+          ],
+          "tournament-bracket": [
+            "b"
+          ],
+          "tournament-undo": [
+            "u"
+          ],
+          "tab-next": [
+            "]"
+          ],
+          "tab-previous": [
+            "["
+          ],
+          "delete": [
+            "d",
+            "<Del>"
+          ],
+          "use-for-monospace": [
+            "1"
+          ],
+          "use-for-proportional": [
+            "2"
+          ],
+          "use-for-icons": [
+            "3"
+          ],
+          "back": [
+            "<Esc>"
+          ],
+          "confirm": [
+            "<CR>"
+          ],
+          "up": [
+            "k",
+            "<Up>"
+          ],
+          "down": [
+            "j",
+            "<Down>"
+          ],
+          "left": [
+            "h",
+            "<Left>"
+          ],
+          "right": [
+            "l",
+            "<Right>"
+          ],
+          "top": [
+            "g",
+            "<Home>"
+          ],
+          "bottom": [
+            "G",
+            "<End>"
+          ],
+          "page-up": [
+            "<PageUp>"
+          ],
+          "page-down": [
+            "<PageDown>"
+          ],
+          "size-up": [
+            "+",
+            "="
+          ],
+          "size-down": [
+            "-"
+          ],
+          "search": [
+            "/"
+          ]
+        },
+        "settings": {
+          "discard-changes": [
+            "D"
+          ],
+          "tab-next": [
+            "]"
+          ],
+          "tab-previous": [
+            "["
+          ],
+          "add": [
+            "a"
+          ],
+          "delete": [
+            "d",
+            "<Del>"
+          ],
+          "restore": [
+            "r"
+          ],
+          "save-named": [
+            "n"
+          ],
+          "reset-preset": [
+            "R"
+          ],
+          "toggle-all": [
+            "A"
+          ],
+          "edit-as-text": [
+            "i"
+          ],
+          "focus-next": [
+            "<Tab>"
+          ],
+          "focus-previous": [
+            "<S-Tab>"
+          ],
+          "back": [
+            "<Esc>"
+          ],
+          "confirm": [
+            "<CR>"
+          ],
+          "up": [
+            "k",
+            "<Up>"
+          ],
+          "down": [
+            "j",
+            "<Down>"
+          ],
+          "left": [
+            "h",
+            "<Left>"
+          ],
+          "right": [
+            "l",
+            "<Right>"
+          ],
+          "top": [
+            "g",
+            "<Home>"
+          ],
+          "bottom": [
+            "G",
+            "<End>"
+          ],
+          "page-up": [
+            "<PageUp>"
+          ],
+          "page-down": [
+            "<PageDown>"
+          ]
+        },
+        "resize": {
+          "reset-sizes": [
+            "="
+          ],
+          "back": [
+            "<Esc>",
+            "<CR>"
+          ],
+          "up": [
+            "k",
+            "<Up>"
+          ],
+          "down": [
+            "j",
+            "<Down>"
+          ],
+          "left": [
+            "h",
+            "<Left>"
+          ],
+          "right": [
+            "l",
+            "<Right>"
+          ],
+          "up-big": [
+            "K",
+            "<S-Up>"
+          ],
+          "down-big": [
+            "J",
+            "<S-Down>"
+          ],
+          "left-big": [
+            "H",
+            "<S-Left>"
+          ],
+          "right-big": [
+            "L",
             "<S-Right>"
           ]
         }

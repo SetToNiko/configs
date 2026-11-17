@@ -3,6 +3,9 @@
   "layout": {
     "tabs": "bottom",
     "inner-tabs": "top",
+    "key-hints": "shown",
+    "main-preview": "hidden",
+    "fonts-preview": "shown",
     "sizes": {
       "fonts-width": 0.28,
       "colours-width": 0.32,
@@ -32,10 +35,7 @@
   "fonts": {
     "sample-at-start": "shown",
     "list-opens-to-current-font": true,
-    "installed-list": "~/dotfiles-nixos/home/fonts-installed.json",
-    "mono-filter": "mono",
-    "ui-filter": "propo",
-    "bar-filter": "nerd-font"
+    "installed-list": "~/dotfiles-nixos/home/fonts-installed.json"
   },
   "font-list": {
     "hide-bitmap": true,
@@ -45,13 +45,23 @@
   },
   "hover": {
     "highlight": false,
-    "highlight-colour": "bg3",
-    "underline": "single",
+    "highlight-colour": "bg5",
+    "underline": "off",
     "underline-colour": "grey1",
     "text": true,
     "text-colour": "yellow",
     "text-weight": "normal",
     "pane-border": "yellow",
     "preview-border": "purple"
+  },
+  "messages": {
+    "seconds": 2,
+    "saved": "popup"
+  },
+  "fonts-page": {
+    "prefetch": false,
+    "prefetch-categories": [
+      "monospace"
+    ]
   }
 }
