@@ -1,44 +1,47 @@
 {
-  "JetBrains Mono": {
-    "mono": {
-      "family": "JetBrainsMono Nerd Font",
-      "size": 14
+  "version": 2,
+  "presets": {
+    "JetBrains Mono": {
+      "mono": {
+        "family": "JetBrainsMono Nerd Font",
+        "size": 14
+      },
+      "ui": {
+        "family": "JetBrainsMono Nerd Font",
+        "size": 14
+      },
+      "bar": {
+        "family": "JetBrainsMono Nerd Font",
+        "size": 14
+      }
     },
-    "ui": {
-      "family": "JetBrainsMono Nerd Font",
-      "size": 14
+    "Geist Mono": {
+      "mono": {
+        "family": "GeistMono Nerd Font",
+        "size": 14
+      },
+      "ui": {
+        "family": "GeistMono Nerd Font",
+        "size": 9
+      },
+      "bar": {
+        "family": "GeistMono Nerd Font",
+        "size": 9
+      }
     },
-    "bar": {
-      "family": "JetBrainsMono Nerd Font",
-      "size": 14
-    }
-  },
-  "Geist Mono": {
-    "mono": {
-      "family": "GeistMono Nerd Font",
-      "size": 14
-    },
-    "ui": {
-      "family": "GeistMono Nerd Font",
-      "size": 9
-    },
-    "bar": {
-      "family": "GeistMono Nerd Font",
-      "size": 9
-    }
-  },
-  "JetBrains + DejaVu Sans": {
-    "mono": {
-      "family": "JetBrainsMono Nerd Font",
-      "size": 14
-    },
-    "ui": {
-      "family": "DejaVu Sans",
-      "size": 9
-    },
-    "bar": {
-      "family": "DejaVu Sans",
-      "size": 9
+    "JetBrains + DejaVu Sans": {
+      "mono": {
+        "family": "JetBrainsMono Nerd Font",
+        "size": 14
+      },
+      "ui": {
+        "family": "DejaVu Sans",
+        "size": 9
+      },
+      "bar": {
+        "family": "DejaVu Sans",
+        "size": 9
+      }
     }
   }
 }
