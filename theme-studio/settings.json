@@ -32,7 +32,10 @@
   "fonts": {
     "sample-at-start": "shown",
     "list-opens-to-current-font": true,
-    "installed-list": "~/dotfiles-nixos/home/fonts-installed.json"
+    "installed-list": "~/dotfiles-nixos/home/fonts-installed.json",
+    "mono-filter": "mono",
+    "ui-filter": "propo",
+    "bar-filter": "nerd-font"
   },
   "font-list": {
     "hide-bitmap": true,

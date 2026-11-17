@@ -259,6 +259,9 @@
           ]
         },
         "font-list": {
+          "fill-roles-from-family": [
+            "F"
+          ],
           "back": [
             "<Esc>"
           ],
@@ -324,6 +327,21 @@
           ]
         },
         "downloads": {
+          "preview-fetch": [
+            "p"
+          ],
+          "preview-text": [
+            "t"
+          ],
+          "preview-language": [
+            "L"
+          ],
+          "preview-next-page": [
+            ">"
+          ],
+          "preview-previous-page": [
+            "<lt>"
+          ],
           "tab-next": [
             "]"
           ],
@@ -369,6 +387,13 @@
           ],
           "page-down": [
             "<PageDown>"
+          ],
+          "size-up": [
+            "+",
+            "="
+          ],
+          "size-down": [
+            "-"
           ],
           "search": [
             "/"
@@ -752,6 +777,9 @@
           ]
         },
         "font-list": {
+          "fill-roles-from-family": [
+            "F"
+          ],
           "back": [
             "<Esc>"
           ],
@@ -817,6 +845,21 @@
           ]
         },
         "downloads": {
+          "preview-fetch": [
+            "p"
+          ],
+          "preview-text": [
+            "t"
+          ],
+          "preview-language": [
+            "L"
+          ],
+          "preview-next-page": [
+            ">"
+          ],
+          "preview-previous-page": [
+            "<lt>"
+          ],
           "tab-next": [
             "]"
           ],
@@ -862,6 +905,13 @@
           ],
           "page-down": [
             "<PageDown>"
+          ],
+          "size-up": [
+            "+",
+            "="
+          ],
+          "size-down": [
+            "-"
           ],
           "search": [
             "/"
@@ -1244,6 +1294,9 @@
           ]
         },
         "font-list": {
+          "fill-roles-from-family": [
+            "F"
+          ],
           "back": [
             "<Esc>",
             "<C-g>"
@@ -1312,6 +1365,21 @@
           ]
         },
         "downloads": {
+          "preview-fetch": [
+            "p"
+          ],
+          "preview-text": [
+            "t"
+          ],
+          "preview-language": [
+            "L"
+          ],
+          "preview-next-page": [
+            ">"
+          ],
+          "preview-previous-page": [
+            "<lt>"
+          ],
           "tab-next": [
             "]"
           ],
@@ -1359,6 +1427,13 @@
           "page-down": [
             "<PageDown>",
             "<C-v>"
+          ],
+          "size-up": [
+            "+",
+            "="
+          ],
+          "size-down": [
+            "-"
           ],
           "search": [
             "<C-s>",
@@ -1733,6 +1808,9 @@
           ]
         },
         "font-list": {
+          "fill-roles-from-family": [
+            "F"
+          ],
           "back": [
             "<Esc>"
           ],
@@ -1795,6 +1873,21 @@
           ]
         },
         "downloads": {
+          "preview-fetch": [
+            "p"
+          ],
+          "preview-text": [
+            "t"
+          ],
+          "preview-language": [
+            "L"
+          ],
+          "preview-next-page": [
+            ">"
+          ],
+          "preview-previous-page": [
+            "<lt>"
+          ],
           "tab-next": [
             "]"
           ],
@@ -1836,6 +1929,13 @@
           ],
           "page-down": [
             "<PageDown>"
+          ],
+          "size-up": [
+            "+",
+            "="
+          ],
+          "size-down": [
+            "-"
           ],
           "search": [
             "<C-f>",
@@ -2191,6 +2291,9 @@
           ]
         },
         "font-list": {
+          "fill-roles-from-family": [
+            "F"
+          ],
           "back": [
             "<Esc>"
           ],
@@ -2253,6 +2356,21 @@
           ]
         },
         "downloads": {
+          "preview-fetch": [
+            "p"
+          ],
+          "preview-text": [
+            "t"
+          ],
+          "preview-language": [
+            "L"
+          ],
+          "preview-next-page": [
+            ">"
+          ],
+          "preview-previous-page": [
+            "<lt>"
+          ],
           "tab-next": [
             "]"
           ],
@@ -2294,6 +2412,13 @@
           ],
           "page-down": [
             "<PageDown>"
+          ],
+          "size-up": [
+            "+",
+            "="
+          ],
+          "size-down": [
+            "-"
           ],
           "search": [
             "<C-f>",
