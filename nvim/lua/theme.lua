@@ -1,4 +1,4 @@
--- Colours from the global theme (~/.config/colors/colors.sh, written by theme-switch.sh).
+-- Colours from the global theme (~/.config/colors/colors.sh, written by theme-switch).
 -- $THEME_COLORS points at another file in the same format (the theme studio's draft palette).
 local path = vim.env.THEME_COLORS or vim.fn.expand("~/.config/colors/colors.sh")
 
@@ -49,7 +49,7 @@ end
 
 apply()
 
--- Re-apply as soon as theme-switch.sh rewrites the colours file
+-- Re-apply as soon as theme-switch rewrites the colours file
 local watcher = vim.uv.new_fs_event()
 local timer = vim.uv.new_timer()
 watcher:start(vim.fs.dirname(path), {}, function(err, filename)

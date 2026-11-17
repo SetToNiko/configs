@@ -3,7 +3,7 @@
 # Please see https://i3wm.org/docs/userguide.html for a complete reference!
 
 include ~/.config/colors/i3
-# font preset (font-switch.sh): window titles and bar
+# font preset (font-switch, from Theme Studio): window titles and bar
 include ~/.config/fonts/i3
 include ~/.config/i3/theme 
 # theme settings have to be defined and set in another file because i3 redefines the imported colour variables before they're used in this one
@@ -201,7 +201,7 @@ default_border pixel 2
   hide_edge_borders smart
   # gaps inner 4
 
-bindsym $mod+t exec --no-startup-id bash ~/dotfiles-nixos/configs/themes-switch.sh
-bindsym $mod+p exec --no-startup-id bash ~/dotfiles-nixos/configs/theme-switch.sh
-bindsym $mod+Shift+t exec --no-startup-id bash ~/dotfiles-nixos/configs/font-switch.sh
+bindsym $mod+t exec --no-startup-id themes-switch
+bindsym $mod+p exec --no-startup-id theme-switch
+bindsym $mod+Shift+t exec --no-startup-id font-switch
 bindsym $mod+Ctrl+t exec --no-startup-id ghostty --class=floating.theme-studio -e theme-studio
