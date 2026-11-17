@@ -11,11 +11,26 @@
           "help": [
             "?"
           ],
-          "tab-colours": [
+          "page-main": [
             "<F1>"
           ],
-          "tab-fonts": [
+          "page-downloads": [
             "<F2>"
+          ],
+          "page-settings": [
+            "<F3>"
+          ],
+          "pane-left": [
+            "<C-w>h"
+          ],
+          "pane-right": [
+            "<C-w>l"
+          ],
+          "pane-up": [
+            "<C-w>k"
+          ],
+          "pane-down": [
+            "<C-w>j"
           ],
           "preview-cycle": [
             "<F12>"
@@ -58,9 +73,21 @@
           ],
           "panel-4": [
             "4"
+          ],
+          "panel-5": [
+            "5"
+          ],
+          "panel-6": [
+            "6"
+          ],
+          "panel-7": [
+            "7"
           ]
         },
         "colours": {
+          "toggle-picker": [
+            "<leader>cp"
+          ],
           "undo": [
             "u"
           ],
@@ -164,6 +191,9 @@
           ]
         },
         "fonts": {
+          "toggle-sample": [
+            "<leader>fs"
+          ],
           "focus-next": [
             "<Tab>"
           ],

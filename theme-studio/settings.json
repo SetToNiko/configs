@@ -1,4 +1,15 @@
 {
+  "colours": {
+    "open-groups": [
+      "Base"
+    ],
+    "picker-at-start": "hidden",
+    "picker-after-editing": "hide-on-esc"
+  },
+  "fonts": {
+    "sample-at-start": "shown",
+    "list-opens-to-current-font": true
+  },
   "font-list": {
     "hide-bitmap": true,
     "hide-cjk-emoji-math": true,
