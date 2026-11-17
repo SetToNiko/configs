@@ -3,15 +3,15 @@
   "presets": {
     "JetBrains Mono": {
       "mono": {
-        "family": "JetBrainsMono Nerd Font",
+        "family": "GeistMono Nerd Font Mono",
         "size": 14
       },
       "ui": {
-        "family": "JetBrainsMono Nerd Font",
+        "family": "GeistMono Nerd Font Propo",
         "size": 14
       },
       "bar": {
-        "family": "JetBrainsMono Nerd Font",
+        "family": "GeistMono Nerd Font",
         "size": 14
       }
     },
