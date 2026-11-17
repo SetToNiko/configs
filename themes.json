@@ -1,13 +1,1 @@
-{
-  "version": 1,
-  "themes": {
-    "CRT Amber": {
-      "palette": "CRT Amber",
-      "fonts": "JetBrains Mono"
-    },
-    "salmon": {
-      "palette": "Noctis Minimus",
-      "fonts": "JetBrains Mono"
-    }
-  }
-}
+theme-studio/themes.json
