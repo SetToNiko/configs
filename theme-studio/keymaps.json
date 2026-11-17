@@ -33,6 +33,9 @@
           "pane-down": [
             "<C-w>j"
           ],
+          "resize-mode": [
+            "<leader>r"
+          ],
           "preview-cycle": [
             "<F12>"
           ],
@@ -303,6 +306,47 @@
           ],
           "show-cjk-emoji-math": [
             "c"
+          ]
+        },
+        "resize": {
+          "reset-sizes": [
+            "="
+          ],
+          "back": [
+            "<Esc>",
+            "<CR>"
+          ],
+          "up": [
+            "k",
+            "<Up>"
+          ],
+          "down": [
+            "j",
+            "<Down>"
+          ],
+          "left": [
+            "h",
+            "<Left>"
+          ],
+          "right": [
+            "l",
+            "<Right>"
+          ],
+          "up-big": [
+            "K",
+            "<S-Up>"
+          ],
+          "down-big": [
+            "J",
+            "<S-Down>"
+          ],
+          "left-big": [
+            "H",
+            "<S-Left>"
+          ],
+          "right-big": [
+            "L",
+            "<S-Right>"
           ]
         }
       }

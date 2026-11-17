@@ -1,6 +1,15 @@
 {
   "layout": {
-    "tabs": "bottom"
+    "tabs": "bottom",
+    "sizes": {
+      "fonts-width": 0.28,
+      "colours-width": 0.32,
+      "sample-height": 0.3,
+      "picker-height": 0.0,
+      "preview-split": 0.5,
+      "narrow-preview-height": 0.42,
+      "narrow-fonts-width": 0.45
+    }
   },
   "colours": {
     "open-groups": [
