@@ -1,0 +1,277 @@
+{
+  "active": "Vim",
+  "presets": {
+    "Vim": {
+      "leader": "<Space>",
+      "bindings": {
+        "global": {
+          "quit": [
+            "q"
+          ],
+          "help": [
+            "?"
+          ],
+          "tab-colours": [
+            "<F1>"
+          ],
+          "tab-fonts": [
+            "<F2>"
+          ],
+          "preview-cycle": [
+            "<F12>"
+          ],
+          "save-palette": [
+            "<leader>sp"
+          ],
+          "save-fonts": [
+            "<leader>sf"
+          ],
+          "apply-palette": [
+            "<leader>ap"
+          ],
+          "apply-fonts": [
+            "<leader>af"
+          ],
+          "save": [
+            "s"
+          ],
+          "save-as": [
+            "S"
+          ],
+          "apply": [
+            "a"
+          ],
+          "open": [
+            "o"
+          ],
+          "new": [
+            "n"
+          ],
+          "panel-1": [
+            "1"
+          ],
+          "panel-2": [
+            "2"
+          ],
+          "panel-3": [
+            "3"
+          ],
+          "panel-4": [
+            "4"
+          ]
+        },
+        "colours": {
+          "undo": [
+            "u"
+          ],
+          "redo": [
+            "<C-r>"
+          ],
+          "focus-next": [
+            "<Tab>"
+          ],
+          "focus-previous": [
+            "<S-Tab>"
+          ],
+          "back": [
+            "<Esc>"
+          ],
+          "pin": [
+            "p"
+          ],
+          "copy-hex": [
+            "y"
+          ],
+          "copy-from": [
+            "c"
+          ],
+          "hex-entry": [
+            "#"
+          ],
+          "toggle-yazi": [
+            "Y"
+          ],
+          "toggle-rofi": [
+            "R"
+          ],
+          "toggle-view": [
+            "V"
+          ]
+        },
+        "colour-list": {
+          "confirm": [
+            "<CR>"
+          ],
+          "up": [
+            "k",
+            "<Up>"
+          ],
+          "down": [
+            "j",
+            "<Down>"
+          ],
+          "right": [
+            "l",
+            "<Right>"
+          ],
+          "top": [
+            "g",
+            "<Home>"
+          ],
+          "bottom": [
+            "G",
+            "<End>"
+          ],
+          "page-up": [
+            "<PageUp>"
+          ],
+          "page-down": [
+            "<PageDown>"
+          ]
+        },
+        "picker": {
+          "up": [
+            "k",
+            "<Up>"
+          ],
+          "down": [
+            "j",
+            "<Down>"
+          ],
+          "left": [
+            "h",
+            "<Left>"
+          ],
+          "right": [
+            "l",
+            "<Right>"
+          ],
+          "up-big": [
+            "K",
+            "<S-Up>"
+          ],
+          "down-big": [
+            "J",
+            "<S-Down>"
+          ],
+          "left-big": [
+            "H",
+            "<S-Left>"
+          ],
+          "right-big": [
+            "L",
+            "<S-Right>"
+          ]
+        },
+        "fonts": {
+          "focus-next": [
+            "<Tab>"
+          ],
+          "focus-previous": [
+            "<S-Tab>"
+          ]
+        },
+        "font-roles": {
+          "up": [
+            "k",
+            "<Up>"
+          ],
+          "down": [
+            "j",
+            "<Down>"
+          ],
+          "left": [
+            "h",
+            "<Left>"
+          ],
+          "right": [
+            "l",
+            "<Right>"
+          ],
+          "left-big": [
+            "H"
+          ],
+          "right-big": [
+            "L"
+          ],
+          "size-up": [
+            "+",
+            "="
+          ],
+          "size-down": [
+            "-"
+          ],
+          "pick-font": [
+            "<CR>",
+            "f"
+          ]
+        },
+        "font-list": {
+          "back": [
+            "<Esc>"
+          ],
+          "confirm": [
+            "<CR>"
+          ],
+          "up": [
+            "k",
+            "<Up>"
+          ],
+          "down": [
+            "j",
+            "<Down>"
+          ],
+          "left": [
+            "h",
+            "<Left>"
+          ],
+          "right": [
+            "l",
+            "<Right>"
+          ],
+          "top": [
+            "g",
+            "<Home>"
+          ],
+          "bottom": [
+            "G",
+            "<End>"
+          ],
+          "page-up": [
+            "<PageUp>"
+          ],
+          "page-down": [
+            "<PageDown>"
+          ],
+          "search": [
+            "/"
+          ],
+          "filter-mono": [
+            "m"
+          ],
+          "filter-propo": [
+            "p"
+          ],
+          "filter-nerd-font": [
+            "n"
+          ],
+          "filter-nerd-font-mono": [
+            "M"
+          ],
+          "filter-nerd-font-propo": [
+            "P"
+          ],
+          "filter-no-nerd-font": [
+            "x"
+          ],
+          "show-bitmap": [
+            "b"
+          ],
+          "show-cjk-emoji-math": [
+            "c"
+          ]
+        }
+      }
+    }
+  }
+}
