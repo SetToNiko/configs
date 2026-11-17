@@ -1,4 +1,7 @@
 {
+  "layout": {
+    "tabs": "bottom"
+  },
   "colours": {
     "open-groups": [
       "Base"
