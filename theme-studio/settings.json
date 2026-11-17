@@ -2,6 +2,7 @@
   "version": 1,
   "layout": {
     "tabs": "bottom",
+    "inner-tabs": "top",
     "sizes": {
       "fonts-width": 0.28,
       "colours-width": 0.32,
@@ -17,7 +18,16 @@
       "Base"
     ],
     "picker-at-start": "hidden",
-    "picker-after-editing": "hide-on-esc"
+    "picker-after-editing": "hide-on-esc",
+    "derived-highlight": {
+      "highlight": true,
+      "highlight-colour": "bg_visual_blue",
+      "underline": "off",
+      "underline-colour": "yellow",
+      "text": false,
+      "text-colour": "yellow",
+      "text-weight": "normal"
+    }
   },
   "fonts": {
     "sample-at-start": "shown",
@@ -28,5 +38,16 @@
     "hide-cjk-emoji-math": true,
     "spacing": "any",
     "nerd-font": "any"
+  },
+  "hover": {
+    "highlight": false,
+    "highlight-colour": "bg3",
+    "underline": "off",
+    "underline-colour": "yellow",
+    "text": true,
+    "text-colour": "yellow",
+    "text-weight": "normal",
+    "pane-border": "yellow",
+    "preview-border": "purple"
   }
 }

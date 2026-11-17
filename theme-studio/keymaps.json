@@ -312,6 +312,9 @@
           ]
         },
         "settings": {
+          "discard-changes": [
+            "D"
+          ],
           "tab-next": [
             "]"
           ],
@@ -739,6 +742,9 @@
           ]
         },
         "settings": {
+          "discard-changes": [
+            "D"
+          ],
           "tab-next": [
             "]"
           ],
@@ -858,7 +864,7 @@
       "bindings": {
         "global": {
           "quit": [
-            "<C-x><leader>"
+            "<C-x><C-c>"
           ],
           "help": [
             "?",
@@ -914,7 +920,7 @@
             "<C-x><C-w>"
           ],
           "apply": [
-            "<leader><leader>"
+            "<leader><C-c>"
           ],
           "open": [
             "<C-x><C-f>"
@@ -1168,6 +1174,9 @@
           ]
         },
         "settings": {
+          "discard-changes": [
+            "D"
+          ],
           "tab-next": [
             "]"
           ],
@@ -1582,6 +1591,9 @@
           ]
         },
         "settings": {
+          "discard-changes": [
+            "D"
+          ],
           "tab-next": [
             "]"
           ],
@@ -1977,6 +1989,9 @@
           ]
         },
         "settings": {
+          "discard-changes": [
+            "D"
+          ],
           "tab-next": [
             "]"
           ],
