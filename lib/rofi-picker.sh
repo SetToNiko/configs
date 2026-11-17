@@ -13,6 +13,18 @@
 #   NOUN     what a preset is called in messages ("Palette", "Font preset")
 #
 # Prints the chosen key; returns 1 if the menu was closed without choosing.
+#
+# The files are either the plain map (version 1) or, from version 2,
+# {"version": 2, "palettes" / "presets": { ... }}; everything here reads and
+# edits the map inside, whichever it is.
+
+# jq: `data` is the map of presets in either layout
+JQ_DATA='def data: if type == "object" and has("version") then (to_entries | map(select(.key != "version")) | .[0].value) else . end;'
+
+# json_data FILE: prints the map of presets (either layout)
+json_data() {
+  jq "$JQ_DATA data" "$1"
+}
 
 # Escape text for rofi's Pango markup
 markup_escape() {
@@ -25,7 +37,7 @@ json_picker() {
   local -a names
 
   while :; do
-    mapfile -t names < <(jq -r 'keys_unsorted[]' "$file")
+    mapfile -t names < <(jq -r "$JQ_DATA data | keys_unsorted[]" "$file")
 
     active=0
     for i in "${!names[@]}"; do
@@ -41,7 +53,7 @@ json_picker() {
     notice=
 
     # Alt+BackSpace (kb-custom-1) deletes the highlighted preset; rofi exits with 10.
-    idx=$(jq -r --arg cur "$current" "$rows" "$file" |
+    idx=$(jq -r --arg cur "$current" "$JQ_DATA data | $rows" "$file" |
       rofi -dmenu -i -markup-rows -format i \
         -kb-custom-1 Alt+BackSpace -mesg "$mesg" \
         -selected-row "$row" -a "$active" -p "$prompt")
@@ -55,7 +67,7 @@ json_picker() {
         notice="$noun \"$label\" is active and can't be deleted"
       else
         tmp=$(mktemp) &&
-          jq --arg n "${names[$idx]}" 'del(.[$n])' "$file" > "$tmp" &&
+          jq --arg n "${names[$idx]}" 'if type == "object" and has("version") then (to_entries | map(select(.key != "version")) | .[0].key) as $k | .[$k] |= del(.[$n]) else del(.[$n]) end' "$file" > "$tmp" &&
           cat "$tmp" > "$file" &&
           notice="$noun \"$label\" deleted"
         rm -f "$tmp"

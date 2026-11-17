@@ -7,8 +7,9 @@
 # set are kept, so hand-tuned themes (e.g. "Gruvbox Dark Hard") stay as they are
 # and running this again changes nothing.
 #
-# Adding a theme: add a line with the 8 base colours to palettes.json, then
-#   jq -r -f palette-derive.jq palettes.json > /tmp/p.json && mv /tmp/p.json palettes.json
+# Adding a theme: add it with the 8 base colours to palettes.json, then
+#   jq -f palette-derive.jq palettes.json > /tmp/p.json && mv /tmp/p.json palettes.json
+# (reads either layout of palettes.json and writes version 2).
 
 def hexval: explode | map(if . >= 97 then . - 87 else . - 48 end) | .[0] * 16 + .[1];
 def rgb: ascii_downcase | [.[1:3], .[3:5], .[5:7]] | map(hexval);
@@ -64,5 +65,5 @@ def derive:
       grey2: mix($bg; $fg; 0.67)
     } + $p; # anything the theme sets itself wins
 
-# one theme per line, like the input
-"{\n" + (to_entries | map("  \(.key | tojson): \(.value | derive | tojson)") | join(",\n")) + "\n}"
+# version 2: {"version": 2, "palettes": { name: palette }}
+(if has("version") then .palettes else . end) | map_values(derive) | {version: 2, palettes: .}

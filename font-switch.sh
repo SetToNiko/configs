@@ -9,6 +9,7 @@
 here=$(dirname "$(readlink -f "$0")")
 fonts="${FONTS:-$here/fonts.json}"
 out="$HOME/.config/fonts"
+. "$here/lib/rofi-picker.sh" # json_picker, json_data (either fonts.json layout)
 
 # Menu rows: bold name, then each font's family and size written in that font,
 # and "(active)" after the current preset
@@ -21,7 +22,6 @@ menu_rows='def esc: gsub("&"; "&amp;") | gsub("<"; "&lt;") | gsub(">"; "&gt;");
 if [ -n "$1" ]; then
   name=$1
 else
-  . "$here/lib/rofi-picker.sh"
   current=$(cat "$out/current" 2>/dev/null)
   # Delete messages use the active palette's red
   red=$(sed -n 's/^red=//p' "$HOME/.config/colors/colors.sh" 2>/dev/null)
@@ -29,14 +29,18 @@ else
 fi
 
 [ -n "$name" ] || exit 0
-jq -e --arg n "$name" 'has($n)' "$fonts" >/dev/null || { echo "no font preset '$name'" >&2; exit 1; }
+# Everything below reads the presets map (whichever layout the file has)
+data=$(mktemp)
+trap 'rm -f "$data"' EXIT
+json_data "$fonts" > "$data"
+jq -e --arg n "$name" 'has($n)' "$data" >/dev/null || { echo "no font preset '$name'" >&2; exit 1; }
 
 offsets=$(cat "$HOME/.config/host/fonts.json" 2>/dev/null) || offsets='{}'
 { read -r mono; read -r mono_size; read -r ui; read -r ui_size; read -r bar; read -r bar_size; } < <(
   jq -r --arg n "$name" --argjson off "$offsets" '.[$n]
     | .mono.family, .mono.size + ($off.mono // 0),
       .ui.family, .ui.size + ($off.ui // 0),
-      (.bar // .ui | .family), (.bar // .ui | .size) + ($off.bar // $off.ui // 0)' "$fonts")
+      (.bar // .ui | .family), (.bar // .ui | .size) + ($off.bar // $off.ui // 0)' "$data")
 
 for family in "$mono" "$ui" "$bar"; do
   fc-list -q ":family=$family" || echo "warning: font '$family' is not installed" >&2

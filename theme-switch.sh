@@ -4,6 +4,7 @@
 here=$(dirname "$(readlink -f "$0")")
 palettes="${PALETTES:-$here/palettes.json}"
 out="$HOME/.config/colors"
+. "$here/lib/rofi-picker.sh" # json_picker, json_data (either palettes.json layout)
 
 # Menu rows: bold name, one swatch per main colour,
 # and "(active)" after the current scheme
@@ -15,21 +16,24 @@ menu_rows='to_entries[]
 if [ -n "$1" ]; then
   name=$1
 else
-  . "$here/lib/rofi-picker.sh"
   current=$(cat "$out/current" 2>/dev/null)
   # Delete messages use the active palette's red
-  red=$(jq -r --arg n "$current" '.[$n].red // "#ff5555"' "$palettes")
+  red=$(json_data "$palettes" | jq -r --arg n "$current" '.[$n].red // "#ff5555"')
   name=$(json_picker "$palettes" Theme "$menu_rows" "$current" "$red" Palette) || exit 0
 fi
 
 [ -n "$name" ] || exit 0
-jq -e --arg n "$name" 'has($n)' "$palettes" >/dev/null || { echo "no scheme '$name'" >&2; exit 1; }
+# Everything below reads the palettes map (whichever layout the file has)
+data=$(mktemp)
+trap 'rm -f "$data"' EXIT
+json_data "$palettes" > "$data"
+jq -e --arg n "$name" 'has($n)' "$data" >/dev/null || { echo "no scheme '$name'" >&2; exit 1; }
 
 mkdir -p "$out"
 jq -r --arg n "$name" '.[$n] | to_entries[] | "set $\(.key) \(.value)"' \
-  "$palettes" > "$out/i3"
+  "$data" > "$out/i3"
 jq -r --arg n "$name" '.[$n] | to_entries[] | "\(.key)=\(.value)"' \
-  "$palettes" > "$out/colors.sh"
+  "$data" > "$out/colors.sh"
 echo "$name" > "$out/current"
 
 # Ghostty: the palette sets background, foreground and all 16 ANSI colours,
@@ -53,17 +57,17 @@ fi
     | (if $theme == "" then $m.without_theme | to_entries[] | "\(.key) = \($p[.value])" else empty end),
       "background = \($p[$m.background])", "foreground = \($p[$m.foreground])",
       ($m.palette | to_entries[] | "palette = \(.key)=\($p[.value])")' \
-    "$palettes"; } > "$out/ghostty"
+    "$data"; } > "$out/ghostty"
 
 # rofi: raw colours only; config.rasi decides what uses them
 { echo '* {'
-  jq -r --arg n "$name" '.[$n] | to_entries[] | "    \(.key | gsub("_"; "-")): \(.value);"' "$palettes"
+  jq -r --arg n "$name" '.[$n] | to_entries[] | "    \(.key | gsub("_"; "-")): \(.value);"' "$data"
   echo '}'; } > "$out/rofi.rasi"
 
 # Firefox (Pywalfox): mapping lives in configs/pywalfox/colors.jq
 mkdir -p "$HOME/.cache/wal"
 jq --arg n "$name" -f "$here/pywalfox/colors.jq" \
-  "$palettes" > "$HOME/.cache/wal/colors.json"
+  "$data" > "$HOME/.cache/wal/colors.json"
 
 if [ -z "$NO_RESTART" ]; then
   pkill -USR2 -f '^ghostty( |$)'   # Ghostty reloads its config on SIGUSR2
