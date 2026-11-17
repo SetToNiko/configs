@@ -1,0 +1,9 @@
+{
+  "version": 1,
+  "themes": {
+    "CRT Amber": {
+      "palette": "CRT Amber",
+      "fonts": "JetBrains Mono"
+    }
+  }
+}

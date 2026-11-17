@@ -12,6 +12,9 @@
 #   RED      colour of the delete message
 #   NOUN     what a preset is called in messages ("Palette", "Font preset")
 #
+# JQ_ARGS (an array, optional) adds arguments to the rows' jq call, e.g.
+# (--slurpfile p palettes.json) so rows can show another file's data.
+#
 # Prints the chosen key; returns 1 if the menu was closed without choosing.
 #
 # The files are either the plain map (version 1) or, from version 2,
@@ -53,7 +56,7 @@ json_picker() {
     notice=
 
     # Alt+BackSpace (kb-custom-1) deletes the highlighted preset; rofi exits with 10.
-    idx=$(jq -r --arg cur "$current" "$JQ_DATA data | $rows" "$file" |
+    idx=$(jq -r --arg cur "$current" "${JQ_ARGS[@]}" "$JQ_DATA data | $rows" "$file" |
       rofi -dmenu -i -markup-rows -format i \
         -kb-custom-1 Alt+BackSpace -mesg "$mesg" \
         -selected-row "$row" -a "$active" -p "$prompt")

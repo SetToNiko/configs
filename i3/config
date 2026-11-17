@@ -201,6 +201,7 @@ default_border pixel 2
   hide_edge_borders smart
   # gaps inner 4
 
-bindsym $mod+t exec --no-startup-id bash ~/dotfiles-nixos/configs/theme-switch.sh
+bindsym $mod+t exec --no-startup-id bash ~/dotfiles-nixos/configs/themes-switch.sh
+bindsym $mod+p exec --no-startup-id bash ~/dotfiles-nixos/configs/theme-switch.sh
 bindsym $mod+Shift+t exec --no-startup-id bash ~/dotfiles-nixos/configs/font-switch.sh
 bindsym $mod+Ctrl+t exec --no-startup-id ghostty --class=floating.theme-studio -e theme-studio

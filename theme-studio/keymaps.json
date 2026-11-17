@@ -39,6 +39,18 @@
           "undo-config-change": [
             "<leader>u"
           ],
+          "open-palette": [
+            "<leader>op"
+          ],
+          "open-font-preset": [
+            "<leader>of"
+          ],
+          "new-palette": [
+            "<leader>np"
+          ],
+          "new-font-preset": [
+            "<leader>nf"
+          ],
           "preview-cycle": [
             "<F12>"
           ],
@@ -518,6 +530,18 @@
           ],
           "undo-config-change": [
             "<leader>u"
+          ],
+          "open-palette": [
+            "<leader>op"
+          ],
+          "open-font-preset": [
+            "<leader>of"
+          ],
+          "new-palette": [
+            "<leader>np"
+          ],
+          "new-font-preset": [
+            "<leader>nf"
           ],
           "preview-cycle": [
             "<F12>"
@@ -999,6 +1023,18 @@
           ],
           "undo-config-change": [
             "<leader>u"
+          ],
+          "open-palette": [
+            "<leader>op"
+          ],
+          "open-font-preset": [
+            "<leader>of"
+          ],
+          "new-palette": [
+            "<leader>np"
+          ],
+          "new-font-preset": [
+            "<leader>nf"
           ],
           "preview-cycle": [
             "<F12>"
@@ -1484,6 +1520,18 @@
           "undo-config-change": [
             "<leader>u"
           ],
+          "open-palette": [
+            "<leader>op"
+          ],
+          "open-font-preset": [
+            "<leader>of"
+          ],
+          "new-palette": [
+            "<leader>np"
+          ],
+          "new-font-preset": [
+            "<leader>nf"
+          ],
           "preview-cycle": [
             "<F12>"
           ],
@@ -1936,6 +1984,18 @@
           ],
           "undo-config-change": [
             "<leader>u"
+          ],
+          "open-palette": [
+            "<leader>op"
+          ],
+          "open-font-preset": [
+            "<leader>of"
+          ],
+          "new-palette": [
+            "<leader>np"
+          ],
+          "new-font-preset": [
+            "<leader>nf"
           ],
           "preview-cycle": [
             "<F12>"
