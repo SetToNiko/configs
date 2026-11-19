@@ -3,4 +3,10 @@ prepend_keymap = [
   { on = "<Esc>", run = "quit", desc = "Quit yazi" },
   # inside nvim: enter directories instead of opening them (plugins/smart-enter.yazi)
   { on = "<Enter>", run = "plugin smart-enter", desc = "Open file / enter directory in nvim" },
+  # extract the hovered/selected archives (zip, tar.*, 7z, rar, gz, ...) into a
+  # folder beside each one, with ouch (plugins/unzip.yazi)
+  { on = "u", run = "plugin unzip", desc = "Extract archive into a folder" },
+  # zip the selected files (or the hovered one) into the current folder, after
+  # asking for a name (plugins/zip.yazi); replaces yazi's default "z" (fzf jump)
+  { on = "z", run = "plugin zip", desc = "Zip selected files" },
 ]

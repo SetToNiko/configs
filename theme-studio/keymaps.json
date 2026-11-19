@@ -430,6 +430,12 @@
           ]
         },
         "settings": {
+          "next-heading": [
+            "}"
+          ],
+          "previous-heading": [
+            "{"
+          ],
           "discard-changes": [
             "D"
           ],
@@ -978,6 +984,12 @@
           ]
         },
         "settings": {
+          "next-heading": [
+            "}"
+          ],
+          "previous-heading": [
+            "{"
+          ],
           "discard-changes": [
             "D"
           ],
@@ -1531,6 +1543,12 @@
           ]
         },
         "settings": {
+          "next-heading": [
+            "}"
+          ],
+          "previous-heading": [
+            "{"
+          ],
           "discard-changes": [
             "D"
           ],
@@ -2063,6 +2081,12 @@
           ]
         },
         "settings": {
+          "next-heading": [
+            "}"
+          ],
+          "previous-heading": [
+            "{"
+          ],
           "discard-changes": [
             "D"
           ],
@@ -2576,6 +2600,12 @@
           ]
         },
         "settings": {
+          "next-heading": [
+            "}"
+          ],
+          "previous-heading": [
+            "{"
+          ],
           "discard-changes": [
             "D"
           ],

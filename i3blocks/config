@@ -34,6 +34,13 @@ interval=10
 command=free -h --si | awk '/^Mem/ {print $3 "/" $2}'
 interval=10
 
+# nerd font icon + active keyboard layout (EN / FR); event-driven: reprints
+# on every layout change (Super+Space); left click picks a layout in rofi,
+# right click switches to the next one
+[keyboard]
+command=bash ~/.config/i3blocks/keyboard.sh
+interval=persist
+
 [time]
 command=date '+%H:%M'
 interval=5

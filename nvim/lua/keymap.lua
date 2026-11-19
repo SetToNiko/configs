@@ -57,7 +57,8 @@ vim.keymap.set({ "n", "v" }, "<leader>y", "<cmd>Yazi<cr>", { desc = "Yazi at cur
 vim.keymap.set("n", "<leader>Y", "<cmd>Yazi cwd<cr>", { desc = "Yazi in working directory" })
 
 vim.keymap.set("n", "<leader>t", function()
-	yazi_sidebar(vim.uv.cwd())
+	local file = vim.api.nvim_buf_get_name(0)
+	yazi_sidebar(file ~= "" and file or vim.uv.cwd())
 end, { desc = "Yazi sidebar at current file" })
 
 -- Refactoring (expr mappings: in normal mode they wait for a motion/textobject)

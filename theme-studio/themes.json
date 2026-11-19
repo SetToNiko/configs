@@ -1,13 +1,23 @@
 {
-  "version": 1,
+  "version": 2,
   "themes": {
     "CRT Amber": {
       "palette": "CRT Amber",
-      "fonts": "JetBrains Mono"
+      "fonts": "JetBrains Mono",
+      "sizes": {
+        "monospace": 14,
+        "proportional": 9,
+        "icons": 9
+      }
     },
     "salmon": {
       "palette": "Noctis Minimus",
-      "fonts": "JetBrains Mono"
+      "fonts": "JetBrains Mono",
+      "sizes": {
+        "monospace": 14,
+        "proportional": 8,
+        "icons": 8
+      }
     }
   }
 }

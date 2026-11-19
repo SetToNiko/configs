@@ -1,46 +1,37 @@
 {
-  "version": 3,
+  "version": 4,
   "presets": {
     "JetBrains Mono": {
       "monospace": {
-        "family": "JetBrainsMono Nerd Font Mono",
-        "size": 14
+        "family": "JetBrainsMono Nerd Font Mono"
       },
       "proportional": {
-        "family": "DejaVu Sans",
-        "size": 15
+        "family": "JetBrainsMono Nerd Font Propo"
       },
       "icons": {
-        "family": "GeistMono Nerd Font Propo",
-        "size": 14
+        "family": "JetBrainsMono Nerd Font Propo"
       }
     },
     "Geist Mono": {
       "monospace": {
-        "family": "GeistMono Nerd Font",
-        "size": 14
+        "family": "GeistMono Nerd Font"
       },
       "proportional": {
-        "family": "GeistMono Nerd Font",
-        "size": 9
+        "family": "GeistMono Nerd Font"
       },
       "icons": {
-        "family": "GeistMono Nerd Font",
-        "size": 9
+        "family": "GeistMono Nerd Font"
       }
     },
     "JetBrains + DejaVu Sans": {
       "monospace": {
-        "family": "JetBrainsMono Nerd Font",
-        "size": 14
+        "family": "JetBrainsMono Nerd Font"
       },
       "proportional": {
-        "family": "DejaVu Sans",
-        "size": 9
+        "family": "DejaVu Sans"
       },
       "icons": {
-        "family": "DejaVu Sans",
-        "size": 9
+        "family": "DejaVu Sans"
       }
     }
   }

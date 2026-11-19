@@ -4,7 +4,7 @@
     "tabs": "bottom",
     "inner-tabs": "top",
     "key-hints": "shown",
-    "main-preview": "hidden",
+    "main-preview": "shown",
     "fonts-preview": "shown",
     "sizes": {
       "fonts-width": 0.28,
@@ -45,7 +45,7 @@
   },
   "hover": {
     "highlight": false,
-    "highlight-colour": "bg5",
+    "highlight-colour": "orange",
     "underline": "off",
     "underline-colour": "grey1",
     "text": true,

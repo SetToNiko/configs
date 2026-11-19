@@ -40,6 +40,12 @@ exec --no-startup-id wallpaper-rotate
 # and nm-applet is a desktop environment-independent system tray GUI for it.
 exec --no-startup-id nm-applet
 
+# Middle-click pastes the last selection in X11; this stops it everywhere
+exec_always --no-startup-id pgrep -x xmousepastebloc || xmousepasteblock
+
+# The mouse pointer hides on any keypress and comes back when the mouse moves
+exec_always --no-startup-id pgrep -x xbanish || xbanish
+
 exec_always --no-startup-id autotiling
 
 # Use wpctl to adjust volume in PulseAudio.
@@ -57,6 +63,9 @@ for_window [class="^floating\.term$"] floating enable, resize set 75 ppt 75 ppt,
 # theme studio ($mod+Ctrl+t): nearly full screen, with a 4px border that is easy
 # to grab for resizing (it reflows to any size)
 for_window [class="^floating\.theme-studio$"] floating enable, resize set 96 ppt 92 ppt, move position center, border pixel 4
+# dragon-drop (from yazi middle-click): float it right under the mouse so the
+# files can be dragged straight out.
+for_window [class="^Dragon-drop$"] floating enable, move position mouse
 
 # adds 2 pixel border around ghostty windows
 for_window [class="^(com\.mitchellh\.ghostty|floating\.term)$"] border pixel 1
@@ -105,7 +114,7 @@ bindsym $mod+v split v
 bindsym $mod+f fullscreen toggle
 
 # change container layout (stacked, tabbed, toggle split)
-bindsym $mod+s layout stacking
+# ($mod+s was "layout stacking"; it takes screenshots now, see below)
 bindsym $mod+w layout tabbed
 bindsym $mod+e layout toggle split
 
@@ -193,6 +202,10 @@ mode "resize" {
 
 
 
+
+# Screenshots: drag a region (or click a window); Esc cancels (screenshot.sh)
+bindsym $mod+s exec --no-startup-id bash ~/.config/i3/screenshot.sh clip
+bindsym $mod+Shift+s exec --no-startup-id bash ~/.config/i3/screenshot.sh save
 
 # Visual stuff
 
