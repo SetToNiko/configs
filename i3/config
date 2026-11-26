@@ -214,7 +214,7 @@ default_border pixel 2
   hide_edge_borders smart
   # gaps inner 4
 
-bindsym $mod+t exec --no-startup-id themes-switch
-bindsym $mod+p exec --no-startup-id theme-switch
-bindsym $mod+Shift+t exec --no-startup-id font-switch
+# Palette menu: the chosen palette is saved in the active Theme Studio theme
+# and applied (palette-menu.sh)
+bindsym $mod+p exec --no-startup-id bash ~/.config/i3/palette-menu.sh
 bindsym $mod+Ctrl+t exec --no-startup-id ghostty --class=floating.theme-studio -e theme-studio
