@@ -19,9 +19,30 @@ fail() {
   exit 1
 }
 
-# The palettes in the order of palettes.json; the applied one is selected.
-choice=$(jq -r '.palettes | keys_unsorted[]' "$palettes" |
-  rofi -dmenu -i -p palette -select "$current") || exit 0
+# The palettes in the order of palettes.json, one name per line.
+names=$(jq -r '.palettes | keys_unsorted[]' "$palettes")
+
+# One menu row per palette (Pango markup): a preview on the palette's own
+# background (a text sample in its foreground colour, then its 7 accent
+# colours as blocks), then the name. A missing colour shows as the
+# background. The name is escaped, so & < > in a name cannot break the markup.
+rows=$(jq -r '
+  def esc: gsub("&"; "&amp;") | gsub("<"; "&lt;") | gsub(">"; "&gt;");
+  .palettes | to_entries[] | .value as $p | ($p.bg0 // "#000000") as $bg |
+  "<span background=\"\($bg)\" foreground=\"\($p.fg0 // $bg)\"> Aa "
+  + ([ "red", "orange", "yellow", "green", "aqua", "blue", "purple" ]
+     | map("<span foreground=\"\($p[.] // $bg)\">██</span>") | join(""))
+  + " </span>  " + (.key | esc)
+' "$palettes")
+
+# The applied palette is the selected row (rofi counts rows from 0).
+row=$(grep -nxF -- "$current" <<<"$names" | head -1 | cut -d: -f1 || true)
+selected=$((${row:-1} - 1))
+
+# rofi prints the number of the chosen row (-format i), not the markup.
+index=$(rofi -dmenu -i -markup-rows -format i -p palette -selected-row "$selected" <<<"$rows") || exit 0
+[ -n "$index" ] || exit 0
+choice=$(sed -n "$((index + 1))p" <<<"$names")
 [ -n "$choice" ] || exit 0
 
 # Save the palette in the active theme. A temporary file next to themes.json,
